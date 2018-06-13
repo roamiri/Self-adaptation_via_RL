@@ -110,15 +110,14 @@ end
     count = 0;
     errorVector = zeros(1,Iterations);
     dth = 25; %meter
-    sumQ = 0.0;
     extra_time = 0.0;
     for episode = 1:Iterations
 %          textprogressbar((episode/Iterations)*100);
-        sumQ = 0.0;%sumQ * 0.0;
-%         for j=1:size(FBS,2)
-%             fbs = FBS{j};
-%             sumQ = sumQ + fbs.Q; 
-%         end
+        sumQ = sumQ * 0.0;
+        for j=1:size(FBS,2)
+            fbs = FBS{j};
+            sumQ = sumQ + fbs.Q; 
+        end
         
         if (episode/Iterations)*100 < 80
             % Action selection with epsilon=0.1
@@ -222,6 +221,6 @@ end
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
     QFinal = answer;
-    save(sprintf('Jun13/R_1/pro_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Jun13/R_1/pro_CL_%d_%d.mat', fbsCount, saveNum),'QFinal');
 %     FBS_out = FBS;
 end

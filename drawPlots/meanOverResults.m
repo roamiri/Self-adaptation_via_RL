@@ -22,7 +22,7 @@ for i=1:16
 
     
     for j=1:100
-        s = sprintf('oct19/R_18_CL3/pro_128_%d_%d.mat',i,j);
+        s = sprintf('Jun13/R_1/pro_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -89,12 +89,12 @@ grid on;
 box on;
 plot(ones(1,16)*1.0, '--k', 'LineWidth',1);
 plot(MUE_C, '--*r', 'LineWidth',1,'MarkerSize',10);
-plot(MUE_C_ref, '--*b', 'LineWidth',1,'MarkerSize',10);
+% plot(MUE_C_ref, '--*b', 'LineWidth',1,'MarkerSize',10);
 title('MUE capacity','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
-xlim([2 16]);
-ylim([0 7]);
+% xlim([2 16]);
+% ylim([0 7]);
 legend({'threshold','proposed RF','[9]'},'FontSize',14, 'FontWeight','bold');
 %%
 figure;
@@ -104,19 +104,19 @@ box on;
 plot( ones(1,16)*1.0, '--k', 'LineWidth',1);
 for i=1:16
     vec = C_FUE_Mat{i};
-    vec_ref = C_FUE_Mat_ref{i};
+%     vec_ref = C_FUE_Mat_ref{i};
     for j=1:size(vec,2)
         plot(i,vec(j), '*r', 'LineWidth',1,'MarkerSize',10);
-        plot(i,vec_ref(j), '*b', 'LineWidth',1,'MarkerSize',10);
+%         plot(i,vec_ref(j), '*b', 'LineWidth',1,'MarkerSize',10);
     end
 end
 plot(min_FUE, '--r', 'LineWidth',1,'MarkerSize',10);
-plot(min_FUE_ref, '--b', 'LineWidth',1,'MarkerSize',10);
+% plot(min_FUE_ref, '--b', 'LineWidth',1,'MarkerSize',10);
 title('FUEs capacity','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
-xlim([2 16]);
-ylim([0 3.5]);
+% xlim([2 16]);
+% ylim([0 3.5]);
 legend({'threshold','proposed RF','[9]'},'FontSize',14, 'FontWeight','bold');
 %%
 figure;
@@ -125,7 +125,7 @@ grid on;
 box on;
 % plot( ones(1,16)*2.0, '--k', 'LineWidth',1 );
 plot(sum_FUE, '--*r', 'LineWidth',1,'MarkerSize',10);
-plot(sum_FUE_ref, '--*b', 'LineWidth',1,'MarkerSize',10);
+% plot(sum_FUE_ref, '--*b', 'LineWidth',1,'MarkerSize',10);
 title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
