@@ -1,8 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Simulation of Power Allocation in femtocell network using 
 %   Reinforcement Learning with random adding of femtocells to the network
-%   Which contains two phase, Independent and Cooperative Learning (IL&CL) 
-%   And it takes the number of Npower as the number of columns of Q-Table
+%   Independent Learning
 %
 function PA_1( Npower, fbsCount,femtocellPermutation, NumRealization, saveNum, CL)
 
@@ -37,8 +36,8 @@ states = allcomb(0:1, 0:3 , 0:3); % states = (I, dMUE , dBS)
 
 % Q-Table
 % Q = zeros(size(states,1) , size(actions , 2));
-Q_init = ones(2 , Npower) * 0.0;
-Q1 = ones(2 , Npower) * inf;
+Q_init = ones(size(states,1) , Npower) * 0.0;
+Q1 = ones(size(states,1) , Npower) * inf;
 % sumQ = ones(size(states,1) , Npower) * 0.0;
 % meanQ = ones(size(states,1) , Npower) * 0.0;
 
@@ -176,9 +175,9 @@ end
 %             fbs = fbs.setCapacity(log2(1+SINR_FUE_Vec(j)));
             fbs.C_FUE = log2(1+SINR_FUE_Vec(j));
             if fbs.C_FUE <= q_fue
-                fbs.s_new = 1;
+                if (fbs.s_index>16), fbs.s_new = fbs.s_index-16; else, fbs.s_new = fbs.s_index; end
             else
-                fbs.s_new = 2;
+                if (fbs.s_index>16), fbs.s_new = fbs.s_index; else, fbs.s_new = fbs.s_index+16; end
             end
             FBS{j}=fbs;
         end

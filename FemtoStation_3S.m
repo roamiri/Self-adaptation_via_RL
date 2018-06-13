@@ -65,6 +65,7 @@ classdef FemtoStation_3S
           else
               obj.state(3) = 3;
           end
+          obj.s_index = 4*obj.state(2)+obj.state(3)+1;
       end
    end
 end
