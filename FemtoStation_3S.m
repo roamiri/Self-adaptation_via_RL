@@ -20,6 +20,7 @@ classdef FemtoStation_3S
       Q
       s_index = 1
       s_new
+      stable = 0
    end
    methods
       function obj = FemtoStation_3S(xPos, yPos, BS, MUE, dFUE)

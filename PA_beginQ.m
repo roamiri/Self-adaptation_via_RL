@@ -3,27 +3,18 @@
 %   Reinforcement Learning with random adding of femtocells to the network
 %   Independent Learning
 %
-function PA( Npower, fbsCount,femtocellPermutation, NumRealization, saveNum, CL)
+function FBS_out = PA_beginQ( FBS_in, Npower, fbsCount,femtocellPermutation, NumRealization, saveNum, CL)
 
 %% Initialization
 % clear all;
 clc;
 % format short
 % format compact
-total = tic;
 %% Parameters
 Pmin = -20;                                                                                                                                                                                                                                                                                                                                                                           %dBm
 Pmax = 25; %dBm
 %StepSize = (Pmax-Pmin)/Npower; % dB
 
-dth = 25;
-Kp = 100; % penalty constant for MUE capacity threshold
-Gmue = 1.37; % bps/Hz
-
-K = 1000;
-PBS = 50 ; %dBm
-sinr_th = 1.64;%10^(2/10); % I am not sure if it is 2 or 20!!!!!
-gamma_th = log2(1+sinr_th);
 %% Minimum Rate Requirements for N MUE users
 N = 3;
 q_mue = 1.00; q_fue=1.0;
@@ -49,56 +40,16 @@ alpha = 0.5; gamma = 0.9; epsilon = 0.1 ; Iterations = 50000;
 % selectedMUE = mue(mueNumber);
 MBS = BaseStation(0 , 0 , 50);
 %%
-%Generate fbsCount=16 FBSs, FemtoStation is the agent of RL algorithm
-FBS_Max = cell(1,16);
-for i=1:3
-%     if i<= fbsCount
-        FBS_Max{i} = FemtoStation_3S(180+(i-1)*35,150, MBS, mue, 10);
-%     end
-end
-
-for i=1:3
-%     if i+3<= fbsCount
-        FBS_Max{i+3} = FemtoStation_3S(165+(i-1)*30,180, MBS, mue, 10);
-%     end
-end
-
-for i=1:4
-%     if i+6<= fbsCount
-        FBS_Max{i+6} = FemtoStation_3S(150+(i-1)*35,200, MBS, mue, 10);
-%     end
-end
-
-for i=1:3
-%     if i+10<= fbsCount
-        FBS_Max{i+10} = FemtoStation_3S(160+(i-1)*35,240, MBS, mue, 10);
-%     end
-end
-
-for i=1:3
-%     if i+13<= fbsCount
-        FBS_Max{i+13} = FemtoStation_3S(150+(i-1)*35,280, MBS, mue, 10);
-%     end
-end
-%%
-% 
-FBS = cell(1,fbsCount);
-
-for i=1:fbsCount
-    FBS{i} = FBS_Max{femtocellPermutation(i)};
-end
-
-    %% Initialize Agents (FBSs)
-%     permutedPowers = randperm(Npower,size(FBS,2));
+% FBS = cell(1,2);
+FBS = FBS_in(1:fbsCount);
+%% Initialize the new Agent (FBS)
     
-    for j=1:size(FBS,2)
-        fbs = FBS{j};
-%         fbs = fbs.setPower(actions(permutedPowers(j)));
-%         fbs.state(1,1) = 0;
-        fbs = fbs.getDistanceStatus;
-        fbs = fbs.setQTable(Q_init);
-        FBS{j} = fbs;
-    end
+j=size(FBS,2);
+fbs = FBS{j};
+fbs = fbs.getDistanceStatus;
+fbs = fbs.setQTable(Q_init);
+FBS{j} = fbs;
+
 %% Calc channel coefficients
     fbsNum = size(FBS,2);
     G = zeros(fbsNum+1, fbsNum+1); % Matrix Containing small scale fading coefficients
@@ -118,33 +69,39 @@ end
             fbs = FBS{j};
             sumQ = sumQ + fbs.Q; 
         end
-        
+        %Choosing action for stable FBSs
+        for j=1:size(FBS,2)-1
+            fbs = FBS{j};
+            kk = fbs.s_index;
+            if CL == 1 
+                [M, index] = max(sumQ(kk,:));     % CL method
+            else                                    
+                [M, index] = max(fbs.Q(kk,:));   %IL method
+            end
+            fbs.P_index = index;
+            fbs.P = actions(index);
+            FBS{j} = fbs;
+        end
+        j = size(FBS,2);
         if (episode/Iterations)*100 < 80
             % Action selection with epsilon=0.1
-            for j=1:size(FBS,2)
                 fbs = FBS{j};
                 if rand<epsilon
-%                     fbs = fbs.setPower(actions(floor(rand*Npower+1)));
                       index = floor(rand*Npower+1);
                       fbs.P_index = index;
                       fbs.P = actions(index);
                 else
-                    a = tic;
                     kk = fbs.s_index;
                     if CL == 1 
                         [M, index] = max(sumQ(kk,:));     % CL method
                     else                                    
                         [M, index] = max(fbs.Q(kk,:));   %IL method
                     end
-%                     fbs = fbs.setPower(actions(index));
                       fbs.P_index = index;
                       fbs.P = actions(index);
-                      
                 end
                 FBS{j} = fbs;
-            end
         else
-            for j=1:size(FBS,2)
                 fbs = FBS{j};
                 kk = fbs.s_index;
                 
@@ -153,16 +110,13 @@ end
                 else                                    
                     [M, index] = max(fbs.Q(kk,:));   %IL method
                 end
-%                 fbs = fbs.setPower(actions(index));
                 fbs.P_index = index;
                 fbs.P = actions(index);
                 FBS{j} = fbs;
-            end
         end 
         % calc FUEs and MUEs capacity
         SINR_FUE_Vec = SINR_FUE_2(G, L, FBS, MBS, -120);
         mue.SINR = SINR_MUE_4(G, L, FBS, MBS, mue, -120);
-%             MUE = MUE.setCapacity(log2(1+MUE.SINR));
         mue.C = log2(1+mue.SINR);
         
         for j=1:size(FBS,2)
@@ -221,6 +175,6 @@ end
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
     QFinal = answer;
-    save(sprintf('Jun13/R_1/pro_CL_%d_%d.mat', fbsCount, saveNum),'QFinal');
-%     FBS_out = FBS;
+    save(sprintf('Jun13/SO_1/pro_IL_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    FBS_out = FBS;
 end
