@@ -5,6 +5,6 @@
 function runForAll(femtocellPermutation,saveNum)
 
 for i=1:16
-    PA_1(32, i,femtocellPermutation,1e3, saveNum, 0);
+    PA(32, i,femtocellPermutation,1e3, saveNum, 0);
 end
 end
