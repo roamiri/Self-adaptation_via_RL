@@ -110,15 +110,15 @@ end
     count = 0;
     errorVector = zeros(1,Iterations);
     dth = 25; %meter
-    
+    sumQ = 0.0;
     extra_time = 0.0;
     for episode = 1:Iterations
 %          textprogressbar((episode/Iterations)*100);
-        sumQ = sumQ * 0.0;
-        for j=1:size(FBS,2)
-            fbs = FBS{j};
-            sumQ = sumQ + fbs.Q; 
-        end
+        sumQ = 0.0;%sumQ * 0.0;
+%         for j=1:size(FBS,2)
+%             fbs = FBS{j};
+%             sumQ = sumQ + fbs.Q; 
+%         end
         
         if (episode/Iterations)*100 < 80
             % Action selection with epsilon=0.1
@@ -166,7 +166,7 @@ end
         extra_time = extra_time + a1;
         % calc FUEs and MUEs capacity
         SINR_FUE_Vec = SINR_FUE_2(G, L, FBS, MBS, -120);
-        mue.SINR = SINR_MUE_4(G, L, FBS, MBS, MUE, -120);
+        mue.SINR = SINR_MUE_4(G, L, FBS, MBS, mue, -120);
 %             MUE = MUE.setCapacity(log2(1+MUE.SINR));
         mue.C = log2(1+mue.SINR);
         
@@ -187,7 +187,7 @@ end
             
             % CALCULATING REWARD
             beta = fbs.dMUE/dth;
-            R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue(i).C-q_mue)^2;
+            R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
             kk = fbs.s_index;
             nextState = fbs.s_new;
             jjj = fbs.P_index;
