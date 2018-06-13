@@ -11,10 +11,10 @@ for i=1:100
 end
 
 parfor_progress(100);
- parfor i=1:1
+ parfor i=1:100
     runForAll(permutationsMat(i,:),i);
-%     pause(rand);
-%     parfor_progress;
+    pause(rand);
+    parfor_progress;
  end
-%  parfor_progress(0); % Clean up
+ parfor_progress(0); % Clean up
 end
