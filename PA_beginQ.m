@@ -175,6 +175,6 @@ FBS{j} = fbs;
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
     QFinal = answer;
-    save(sprintf('Jun13/SO_1/pro_IL_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Jun13/SO_1/pro_CL_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
