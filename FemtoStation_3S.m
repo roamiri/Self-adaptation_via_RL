@@ -3,6 +3,7 @@ classdef FemtoStation_3S
       X
       Y
       P
+      P_index
       dBS
       dMUE
       dFUE
@@ -12,10 +13,13 @@ classdef FemtoStation_3S
       B  % distance with BS
       dM1 = 15; dM2 = 50; dM3 = 125; 
       dB1 = 50; dB2 = 150; dB3 = 400;
-      state = zeros(1,2)
+      state = zeros(1,3)
       powerProfile = []
       C_FUE
       C_profile = []
+      Q
+      s_index = 1
+      s_new
    end
    methods
       function obj = FemtoStation_3S(xPos, yPos, BS, MUE, dFUE)
@@ -31,12 +35,15 @@ classdef FemtoStation_3S
       function obj = setPower(obj,power)
 %           obj.P = 10^((power-30)/10);
             obj.P = power;
-            obj.powerProfile = [obj.powerProfile power];
+%             obj.powerProfile = [obj.powerProfile power];
       end
       
+      function obj = setQTable(obj, Q_init)
+          obj.Q = Q_init;
+      end
       function obj = setCapacity(obj,c)
         obj.C_FUE = c;
-        obj.C_profile = [obj.C_profile c];
+%         obj.C_profile = [obj.C_profile c];
       end
       function obj = getDistanceStatus(obj)
           if(obj.dMUE <= obj.dM1 )
