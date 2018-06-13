@@ -138,7 +138,6 @@ end
                         [M, index] = max(fbs.Q(kk,:));   %IL method
                     end
 %                     fbs = fbs.setPower(actions(index));
-                      a1 = toc(a);
                       fbs.P_index = index;
                       fbs.P = actions(index);
                       
@@ -146,7 +145,6 @@ end
                 FBS{j} = fbs;
             end
         else
-            a = tic;
             for j=1:size(FBS,2)
                 fbs = FBS{j};
                 kk = fbs.s_index;
@@ -161,9 +159,7 @@ end
                 fbs.P = actions(index);
                 FBS{j} = fbs;
             end
-            a1 = toc(a);
         end 
-        extra_time = extra_time + a1;
         % calc FUEs and MUEs capacity
         SINR_FUE_Vec = SINR_FUE_2(G, L, FBS, MBS, -120);
         mue.SINR = SINR_MUE_4(G, L, FBS, MBS, mue, -120);
@@ -225,8 +221,6 @@ end
     answer.C_FUE = c_fue;
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
-    tt = toc(total);
-    answer.time = tt - extra_time;
     QFinal = answer;
     save(sprintf('Jun13/R_1/pro_%d_%d.mat', fbsCount, saveNum),'QFinal');
 %     FBS_out = FBS;
