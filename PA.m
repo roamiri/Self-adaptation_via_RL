@@ -38,7 +38,7 @@ states = allcomb(0:1, 0:3 , 0:3); % states = (I, dMUE , dBS)
 % Q = zeros(size(states,1) , size(actions , 2));
 Q_init = ones(size(states,1) , Npower) * 0.0;
 Q1 = ones(size(states,1) , Npower) * inf;
-% sumQ = ones(size(states,1) , Npower) * 0.0;
+sumQ = ones(size(states,1) , Npower) * 0.0;
 % meanQ = ones(size(states,1) , Npower) * 0.0;
 
 alpha = 0.5; gamma = 0.9; epsilon = 0.1 ; Iterations = 50000;
