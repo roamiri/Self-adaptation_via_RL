@@ -43,16 +43,16 @@ MBS = BaseStation(0 , 0 , 50);
 % FBS = cell(1,2);
 FBS = FBS_in(1:fbsCount);
 %% Initialize the new Agent (FBS)
-    
-sumQ = sumQ * 0.0;
-for j=1:size(FBS,2)-1
-    fbs = FBS{j};
-    sumQ = sumQ + fbs.Q; 
-end
+%     
+% sumQ = sumQ * 0.0;
+% for j=1:size(FBS,2)-1
+%     fbs = FBS{j};
+%     sumQ = sumQ + fbs.Q; 
+% end
 j=size(FBS,2);
 fbs = FBS{j};
 fbs = fbs.getDistanceStatus;
-fbs = fbs.setQTable(sumQ);
+fbs = fbs.setQTable(Q_init);
 FBS{j} = fbs;
 
 %% Calc channel coefficients
@@ -142,6 +142,10 @@ FBS{j} = fbs;
             % CALCULATING REWARD
             beta = fbs.dMUE/dth;
             R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
+            if j == size(FBS,2)
+                d_reward = fbs.dr + (gamma^episode) * R;
+                fbs.dr = [fbs.dr d_reward];
+            end
             kk = fbs.s_index;
             nextState = fbs.s_new;
             jjj = fbs.P_index;
@@ -180,6 +184,6 @@ FBS{j} = fbs;
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
     QFinal = answer;
-    save(sprintf('Jun13/SO_1/pro_IL_Q_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Jun13/disc_reward/pro_IL_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
