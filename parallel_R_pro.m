@@ -3,15 +3,15 @@
 %   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function parallel_R_pro(pref_poolSize)
-% parpool(pref_poolSize)
+parpool(pref_poolSize)
 permutationsMat = zeros(100,16);
 
 for i=1:100
     permutationsMat(i,:) = randperm(16,16);
 end
 
-parfor_progress(100);
- for i=1:1
+parfor_progress(10);
+ parfor i=1:10
     fullRun(permutationsMat(i,:),i);
     pause(rand);
     parfor_progress;
