@@ -45,7 +45,7 @@ FBS = FBS_in(1:fbsCount);
 %% Initialize the new Agent (FBS)
     
 sumQ = sumQ * 0.0;
-for j=1:size(FBS,2)
+for j=1:size(FBS,2)-1
     fbs = FBS{j};
     sumQ = sumQ + fbs.Q; 
 end
