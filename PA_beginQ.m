@@ -143,7 +143,7 @@ FBS{j} = fbs;
             beta = fbs.dMUE/dth;
             R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
             if j == size(FBS,2)
-                d_reward = fbs.dr + (gamma^episode) * R;
+                d_reward = fbs.dr(episode) + (gamma^episode) * R;
                 fbs.dr = [fbs.dr d_reward];
             end
             kk = fbs.s_index;

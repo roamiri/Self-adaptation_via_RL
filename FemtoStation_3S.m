@@ -21,7 +21,7 @@ classdef FemtoStation_3S
       s_index = 1
       s_new
       stable = 0
-      dr = []  %discounted_reward
+      dr = [0]  %discounted_reward
    end
    methods
       function obj = FemtoStation_3S(xPos, yPos, BS, MUE, dFUE)
