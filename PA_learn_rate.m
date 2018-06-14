@@ -23,7 +23,7 @@ q_mue = 1.00; q_fue=1.0;
 actions = linspace(Pmin, Pmax, Npower);
 
 % States
-states = allcomb(0:1, 0:3 , 0:3); % states = (I, dMUE , dBS)
+states = allcomb(0:1, 0:1, 0:3 , 0:3); % states = (I_MUE, I_FUE, dMUE , dBS)
 
 % Q-Table
 % Q = zeros(size(states,1) , size(actions , 2));
@@ -132,11 +132,14 @@ FBS{j} = fbs;
             fbs = FBS{j};
 %             fbs = fbs.setCapacity(log2(1+SINR_FUE_Vec(j)));
             fbs.C_FUE = log2(1+SINR_FUE_Vec(j));
-            if mue.C <= q_mue
-                if (fbs.s_index>16), fbs.s_new = fbs.s_index-16; else, fbs.s_new = fbs.s_index; end
-            else
-                if (fbs.s_index>16), fbs.s_new = fbs.s_index; else, fbs.s_new = fbs.s_index+16; end
-            end
+            if mue.C < q_mue, I_mue = 0; else, I_mue = 1; end
+            if fbs.C_FUE < q_fue, I_fue = 0; else, I_fue=1; end
+            fbs.s_new = 32*I_mue + 16*I_fue + fbs.index;
+%             if mue.C <= q_mue
+%                 if (fbs.s_index>16), fbs.s_new = fbs.s_index-16; else, fbs.s_new = fbs.s_index; end
+%             else
+%                 if (fbs.s_index>16), fbs.s_new = fbs.s_index; else, fbs.s_new = fbs.s_index+16; end
+%             end
             FBS{j}=fbs;
         end
         for j=1:size(FBS,2)
@@ -192,6 +195,6 @@ FBS{j} = fbs;
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
     QFinal = answer;
-    save(sprintf('Jun14/state/pro_IL_S2_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Jun14/state/pro_IL_S31_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end

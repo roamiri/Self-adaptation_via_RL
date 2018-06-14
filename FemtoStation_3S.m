@@ -18,7 +18,8 @@ classdef FemtoStation_3S
       C_FUE
       C_profile = []
       Q
-      s_index = 1
+      index = -1
+      s_index = -1
       s_new
       stable = 0
       dr = [0]  %discounted_reward
@@ -72,6 +73,7 @@ classdef FemtoStation_3S
           else
               obj.state(3) = 3;
           end
+          obj.index = 4*obj.state(2)+obj.state(3)+1;
           obj.s_index = 4*obj.state(2)+obj.state(3)+1;
       end
    end
