@@ -22,6 +22,8 @@ classdef FemtoStation_3S
       s_new
       stable = 0
       dr = [0]  %discounted_reward
+      alpha
+      Error
    end
    methods
       function obj = FemtoStation_3S(xPos, yPos, BS, MUE, dFUE)
@@ -42,6 +44,9 @@ classdef FemtoStation_3S
       
       function obj = setQTable(obj, Q_init)
           obj.Q = Q_init;
+      end
+      function obj = setLearningRate(obj, a_init)
+          obj.alpha = a_init;
       end
       function obj = setCapacity(obj,c)
         obj.C_FUE = c;

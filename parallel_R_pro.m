@@ -10,8 +10,8 @@ for i=1:100
     permutationsMat(i,:) = randperm(16,16);
 end
 
-parfor_progress(10);
- parfor i=1:10
+parfor_progress(100);
+ parfor i=1:100
     fullRun(permutationsMat(i,:),i);
     pause(rand);
     parfor_progress;
