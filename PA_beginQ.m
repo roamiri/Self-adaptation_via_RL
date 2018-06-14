@@ -44,10 +44,15 @@ MBS = BaseStation(0 , 0 , 50);
 FBS = FBS_in(1:fbsCount);
 %% Initialize the new Agent (FBS)
     
+sumQ = sumQ * 0.0;
+for j=1:size(FBS,2)
+    fbs = FBS{j};
+    sumQ = sumQ + fbs.Q; 
+end
 j=size(FBS,2);
 fbs = FBS{j};
 fbs = fbs.getDistanceStatus;
-fbs = fbs.setQTable(Q_init);
+fbs = fbs.setQTable(sumQ);
 FBS{j} = fbs;
 
 %% Calc channel coefficients
@@ -175,6 +180,6 @@ FBS{j} = fbs;
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
     QFinal = answer;
-    save(sprintf('Jun13/SO_1/pro_CL_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Jun13/SO_1/pro_IL_Q_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
