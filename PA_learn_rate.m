@@ -146,14 +146,14 @@ FBS{j} = fbs;
             % CALCULATING REWARD
             beta = fbs.dMUE/dth;
             R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
-            if j == size(FBS,2)
-                d_reward = fbs.dr(episode) + (gamma^episode) * R;
-                fbs.dr = [fbs.dr d_reward];
-            end
+%             if j == size(FBS,2)
+%                 d_reward = fbs.dr(episode) + (gamma^episode) * R;
+%                 fbs.dr = [fbs.dr d_reward];
+%             end
             kk = fbs.s_index;
             nextState = fbs.s_new;
             jjj = fbs.P_index;
-            alpha = 1/(fbs.alpha(kk,index));
+            alpha = 1/((fbs.alpha(kk,index))^0.77);
             fbs.Q(kk,jjj) = fbs.Q(kk,jjj) + alpha*(R+gamma*qMax(nextState)-fbs.Q(kk,jjj));
             fbs.s_index = nextState;
             FBS{j}=fbs;
@@ -163,8 +163,8 @@ FBS{j} = fbs;
         fbs = FBS{size(FBS,2)};
         sumQ = fbs.Q;
         errorVector(episode) =  sum(sum(abs(Q1-sumQ)));
-        delta = 0.01 * errorVector(episode);
-        if errorVector(episode)<delta && sum(sum(sumQ >0))
+%         delta = 1 * errorVector(episode);
+        if errorVector(episode)<0.01
             if count>1000
 %                 episode;  % report last episode
                 break % for
@@ -179,7 +179,7 @@ FBS{j} = fbs;
 %     Q = sumQ;
     answer.mue = mue;
 %     answer.Q = sumQ;
-    FBS{size(FBS,2)}.Error = errorVector;
+%     FBS{size(FBS,2)}.Error = errorVector;
     answer.FBS = FBS;
     for j=1:size(FBS,2)
         c_fue(1,j) = FBS{1,j}.C_FUE;
@@ -192,6 +192,6 @@ FBS{j} = fbs;
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
     QFinal = answer;
-    save(sprintf('Jun14/learn_rate/pro_IL_1_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end

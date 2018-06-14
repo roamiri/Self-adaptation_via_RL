@@ -2,25 +2,25 @@
 clear;
 clc;
 %%
-Episode_vec = [];
-for i=1:16
-    fprintf('FBS num = %d\t', i);
-    Cnt = 0;
-    episodes = 0;
-    
-    for j=1:100
-        s = sprintf('oct17/R_18_CL2/pro_%d_%d.mat',i,j);
-        filename = strcat(s);
-        if exist(s)
-            load(filename);
-            C = QFinal.mue.C_profile;
-            episodes = episodes + size(C,2);
-            Cnt = Cnt+1;
+episode_mat = cell(1,16);
+Episode_vec = zeros(1,16);
+
+Cnt = 0;
+for j=1:100
+    s = sprintf('Jun14/learn_rate/pro_IL_1_16_%d.mat',j);
+    filename = strcat(s);
+    if exist(s)
+        load(filename);
+        for i=1:16
+            Episode_vec(i) = Episode_vec(i) + QFinal.episode;
         end
+        Cnt = Cnt + 1;
     end
-    fprintf('Total Cnt = %d\n',Cnt);
-    Episode_vec = [Episode_vec episodes/Cnt];
 end
+
+fprintf('Total Cnt = %d\n',Cnt);
+Episode_vec = Episode_vec/Cnt;
+
 %%
 Episode_vec_refNoshare = [];
 for i=1:16
