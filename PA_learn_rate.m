@@ -132,7 +132,7 @@ FBS{j} = fbs;
             fbs = FBS{j};
 %             fbs = fbs.setCapacity(log2(1+SINR_FUE_Vec(j)));
             fbs.C_FUE = log2(1+SINR_FUE_Vec(j));
-            if fbs.C_FUE <= q_fue
+            if mue.C <= q_mue
                 if (fbs.s_index>16), fbs.s_new = fbs.s_index-16; else, fbs.s_new = fbs.s_index; end
             else
                 if (fbs.s_index>16), fbs.s_new = fbs.s_index; else, fbs.s_new = fbs.s_index+16; end
@@ -192,6 +192,6 @@ FBS{j} = fbs;
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
     QFinal = answer;
-    save(sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Jun14/state/pro_IL_S2_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
