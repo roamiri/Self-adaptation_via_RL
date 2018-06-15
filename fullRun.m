@@ -33,6 +33,6 @@ end
 FBS_in = cell(1,16);
 for i=1:16
     FBS_in{i} = FBS_Max{femtocellPermutation(i)};
-    FBS_in = PA_learn_rate(FBS_in, 32, i,femtocellPermutation,1e3, saveNum, 0);
+    FBS_in = PA_learn_rate(FBS_in, 32, i,femtocellPermutation,1e3, saveNum, 1);
 end
 end
