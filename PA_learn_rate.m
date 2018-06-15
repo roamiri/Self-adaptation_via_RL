@@ -33,7 +33,7 @@ Q1 = ones(size(states,1) , Npower) * inf;
 sumQ = ones(size(states,1) , Npower) * 0.0;
 % meanQ = ones(size(states,1) , Npower) * 0.0;
 
-alpha = 0.5; gamma = 0.9; epsilon = 0.1 ; Iterations = 50000;
+alpha = 0.5; gamma = 0.9; epsilon = 0.1 ; Iterations = 2*50000;
 %% Generate the UEs
  mue = UE(204, 207);
 % mue(1) = UE(150, 150);
@@ -195,6 +195,6 @@ FBS{j} = fbs;
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
     QFinal = answer;
-    save(sprintf('Jun14/state/pro_IL_S31_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Jun14/state/pro_IL_S32_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
