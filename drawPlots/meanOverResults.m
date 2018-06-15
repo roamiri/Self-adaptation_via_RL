@@ -102,7 +102,7 @@ for i=1:16
     
     for j=1:100
 %         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Jun14/state/pro_IL_S31_%d_%d.mat',i,j);
+        s = sprintf('Jun14/state/pro_IL_S32_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
