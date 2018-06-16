@@ -19,7 +19,7 @@ box on;
 fariness = zeros(1,16);
 fariness_ref = zeros(1,16);
 for i=1:16
-vec = C_FUE_Mat_4{i};
+vec = C_FUE_Mat_3{i};
 % vec_ref = C_FUE_Mat_ref{i};
 num = 0.0;
 num_ref = 0.0;
@@ -35,10 +35,11 @@ end
     fariness(i) = (num^2)/(n*denom);
 %     fairness_ref(i) = (num_ref^2)/(n*denom_ref);
 end
-plot(fariness, 'k--.', 'LineWidth',1,'MarkerSize',10);
+plot(fariness, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 % plot(fairness_ref, 'b--.', 'LineWidth',1,'MarkerSize',10);
 xlim([2 15]);
 ylim([0 1.05]);
 title('Fairness index','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('Jains Index For Fairness','FontSize',14, 'FontWeight','bold');
+legend({'X_1','X_2', 'X_3', 'X_4'},'FontSize',14, 'FontWeight','bold');

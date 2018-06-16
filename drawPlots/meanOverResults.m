@@ -6,7 +6,7 @@ clc;
 MUE_C = [];    
 min_FUE = [];
 sum_FUE = [];
-max_MUE = [];
+mean_FUE = [];
 max_FUE = [];
 C_FUE_Mat = cell(1,16);
 for i=1:16
@@ -22,7 +22,7 @@ for i=1:16
 
     
     for j=1:100
-        s = sprintf('Jun13/SO_1/pro_IL_%d_%d.mat',i,j);
+        s = sprintf('Jun15/ILCL/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -35,60 +35,21 @@ for i=1:16
         end
     end
     fprintf('Total Cnt = %d\n',Cnt);
-    max_MUE = [max_MUE maxmue];
-    max_FUE = [max_FUE maxfue];
+   
     MUE_C = [MUE_C mue_C/Cnt]; 
     sum_FUE = [sum_FUE sumfue/Cnt];
     C_FUE_Mat{i} = c_fue_vec./Cnt;
+    mean_FUE = [mean_FUE mean(C_FUE_Mat{i})];
+    max_FUE = [max_FUE max(C_FUE_Mat{i})];
     min_FUE = [min_FUE min(C_FUE_Mat{i})];
 end
 %%
 MUE_C_1 = [];    
 min_FUE_1 = [];
 sum_FUE_1 = [];
-max_MUE_1 = [];
+mean_FUE_1 = [];
 max_FUE_1 = [];
 C_FUE_Mat_1 = cell(1,16);
-for i=1:16
-    fprintf('FBS num = %d\t', i);
-    maxmue = 0.;
-    maxfue = 0.;
-    mue_C = 0.;
-    minfue = 0.;
-    sumfue = 0.;
-    c_fue_vec = zeros(1,i);
-    Cnt = 0;
-    lowCnt = 0;
-    
-    for j=1:100
-%         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Jun14/learn_rate/pro_IL_1_%d_%d.mat',i,j);
-        filename = strcat(s);
-        if exist(s)
-            load(filename);
-%                 C = QFinal.mue.C_profile;
-%                 cc = sum(C(40000:size(C,2)))/(-40000+size(C,2)+1);
-                mue_C = mue_C + QFinal.mue.C;
-                sumfue = sumfue + QFinal.sum_CFUE;
-                c_fue_vec = c_fue_vec + QFinal.C_FUE;
-                Cnt = Cnt+1;
-        end
-    end
-    fprintf('Total Cnt = %d\n',Cnt);
-    max_MUE_1 = [max_MUE_1 maxmue];
-    max_FUE_1 = [max_FUE_1 maxfue];
-    MUE_C_1 = [MUE_C_1 mue_C/Cnt]; 
-    sum_FUE_1 = [sum_FUE_1 sumfue/Cnt];
-    C_FUE_Mat_1{i} = c_fue_vec./Cnt;
-    min_FUE_1 = [min_FUE_1 min(C_FUE_Mat_1{i})];
-end
-%%
-MUE_C_2 = [];    
-min_FUE_2 = [];
-sum_FUE_2 = [];
-max_MUE_2 = [];
-max_FUE_2 = [];
-C_FUE_Mat_2 = cell(1,16);
 for i=1:16
     fprintf('FBS num = %d\t', i);
     maxmue = 0.;
@@ -115,18 +76,60 @@ for i=1:16
         end
     end
     fprintf('Total Cnt = %d\n',Cnt);
-    max_MUE_2 = [max_MUE_2 maxmue];
-    max_FUE_2 = [max_FUE_2 maxfue];
+    
+    MUE_C_1 = [MUE_C_1 mue_C/Cnt]; 
+    sum_FUE_1 = [sum_FUE_1 sumfue/Cnt];
+    C_FUE_Mat_1{i} = c_fue_vec./Cnt;
+    min_FUE_1 = [min_FUE_1 min(C_FUE_Mat_1{i})];
+    mean_FUE_1 = [mean_FUE_1 mean(C_FUE_Mat_1{i})];
+    max_FUE_1 = [max_FUE_1 max(C_FUE_Mat_1{i})];
+end
+%%
+MUE_C_2 = [];    
+min_FUE_2 = [];
+sum_FUE_2 = [];
+mean_FUE_2 = [];
+max_FUE_2 = [];
+C_FUE_Mat_2 = cell(1,16);
+for i=1:16
+    fprintf('FBS num = %d\t', i);
+    maxmue = 0.;
+    maxfue = 0.;
+    mue_C = 0.;
+    minfue = 0.;
+    sumfue = 0.;
+    c_fue_vec = zeros(1,i);
+    Cnt = 0;
+    lowCnt = 0;
+    
+    for j=1:100
+%         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
+        s = sprintf('Jun14/state/pro_IL_S2_%d_%d.mat',i,j);
+        filename = strcat(s);
+        if exist(s)
+            load(filename);
+%                 C = QFinal.mue.C_profile;
+%                 cc = sum(C(40000:size(C,2)))/(-40000+size(C,2)+1);
+                mue_C = mue_C + QFinal.mue.C;
+                sumfue = sumfue + QFinal.sum_CFUE;
+                c_fue_vec = c_fue_vec + QFinal.C_FUE;
+                Cnt = Cnt+1;
+        end
+    end
+    fprintf('Total Cnt = %d\n',Cnt);
+    
     MUE_C_2 = [MUE_C_2 mue_C/Cnt]; 
     sum_FUE_2 = [sum_FUE_2 sumfue/Cnt];
     C_FUE_Mat_2{i} = c_fue_vec./Cnt;
     min_FUE_2 = [min_FUE_2 min(C_FUE_Mat_2{i})];
+    mean_FUE_2 = [mean_FUE_2 mean(C_FUE_Mat_2{i})];
+    max_FUE_2 = [max_FUE_2 max(C_FUE_Mat_2{i})];
 end
 %%
 MUE_C_3 = [];    
 min_FUE_3 = [];
 sum_FUE_3 = [];
-max_MUE_3 = [];
+mean_FUE_3 = [];
 max_FUE_3 = [];
 C_FUE_Mat_3 = cell(1,16);
 for i=1:16
@@ -142,7 +145,7 @@ for i=1:16
     
     for j=1:100
 %         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Jun15/ILCL/pro_CL_77_%d_%d.mat',i,j);
+        s = sprintf('Jun14/state/pro_IL_S32_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -155,12 +158,13 @@ for i=1:16
         end
     end
     fprintf('Total Cnt = %d\n',Cnt);
-    max_MUE_3 = [max_MUE_3 maxmue];
-    max_FUE_3 = [max_FUE_3 maxfue];
+    
     MUE_C_3 = [MUE_C_3 mue_C/Cnt]; 
     sum_FUE_3 = [sum_FUE_3 sumfue/Cnt];
     C_FUE_Mat_3{i} = c_fue_vec./Cnt;
     min_FUE_3 = [min_FUE_3 min(C_FUE_Mat_3{i})];
+    mean_FUE_3 = [mean_FUE_3 mean(C_FUE_Mat_3{i})];
+    max_FUE_3 = [max_FUE_3 max(C_FUE_Mat_3{i})];
 end
 %%
 figure;
@@ -168,16 +172,16 @@ hold on;
 grid on;
 box on;
 plot(ones(1,16)*1.0, '--k', 'LineWidth',1);
-plot(MUE_C, '--*r', 'LineWidth',1,'MarkerSize',10);
-plot(MUE_C_1, '--*b', 'LineWidth',1,'MarkerSize',10);
-plot(MUE_C_2, '--*g', 'LineWidth',1,'MarkerSize',10);
-% plot(MUE_C_4, '--*k', 'LineWidth',1,'MarkerSize',10);
+plot(MUE_C, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
+plot(MUE_C_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
+plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+plot(MUE_C_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 title('MUE capacity','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
-xlim([2 16]);
-ylim([0 7]);
-legend({'threshold','proposed RF','[9]'},'FontSize',14, 'FontWeight','bold');
+xlim([2 15]);
+ylim([0 3]);
+legend({'$\mathbf{\tilde{q}}$','X_1','X_2', 'X_3', 'X_4'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
 %%
 figure;
 hold on;
@@ -188,41 +192,93 @@ for i=1:16
     vec = C_FUE_Mat{i};
     vec_ref = C_FUE_Mat_1{i};
     vec_ilq = C_FUE_Mat_2{i};
-%     vec_4 = C_FUE_Mat_4{i};
+    vec_4 = C_FUE_Mat_3{i};
     for j=1:size(vec,2)
         plot(i,vec(j), '*r', 'LineWidth',1,'MarkerSize',10);
         plot(i,vec_ref(j), '*b', 'LineWidth',1,'MarkerSize',10);
         plot(i,vec_ilq(j), '*g', 'LineWidth',1,'MarkerSize',10);
-%         plot(i,vec_4(j), '*k', 'LineWidth',1,'MarkerSize',10);
+        plot(i,vec_4(j), '*k', 'LineWidth',1,'MarkerSize',10);
     end
 end
 plot(min_FUE, '--r', 'LineWidth',1,'MarkerSize',10);
 plot(min_FUE_1, '--b', 'LineWidth',1,'MarkerSize',10);
 plot(min_FUE_2, '--g', 'LineWidth',1,'MarkerSize',10);
-% plot(min_FUE_4, '--k', 'LineWidth',1,'MarkerSize',10);
+plot(min_FUE_3, '--k', 'LineWidth',1,'MarkerSize',10);
 title('FUEs capacity','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
-xlim([2 16]);
+xlim([2 15]);
 ylim([0 3.5]);
 legend({'threshold','proposed RF','[9]'},'FontSize',14, 'FontWeight','bold');
+%%
+figure;
+
+subplot(4,1,1);
+hold on;
+grid on;
+box on;
+% plot(1:16, ones(1,16)*1.0, '--k', 'LineWidth',1);
+errorbar(1:16, mean_FUE, max_FUE-min_FUE, '--or', 'LineWidth',1.3,'MarkerSize',2, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
+xlim([2 15]);
+ylim([0 3.0]);
+legend('X_1', 'Interpreter','latex');
+
+subplot(4,1,2);
+hold on;
+grid on;
+box on;
+% plot(1:16, ones(1,16)*1.0, '--k', 'LineWidth',1);
+errorbar(1:16, mean_FUE_1, max_FUE_1-min_FUE_1, '--ob', 'LineWidth',1.3,'MarkerSize',2, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
+xlim([2 15]);
+ylim([0 3.0]);
+legend('X_2');
+
+subplot(4,1,3);
+hold on;
+grid on;
+box on;
+% plot(1:16, ones(1,16)*1.0, '--k', 'LineWidth',1);
+errorbar(1:16, mean_FUE_2, max_FUE_2-min_FUE_1, '--og', 'LineWidth',1.3,'MarkerSize',2, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+xlim([2 15]);
+ylim([0 3.0]);
+legend('X_3');
+
+subplot(4,1,4);
+hold on;
+grid on;
+box on;
+% plot(1:16, ones(1,16)*1.0, '--k', 'LineWidth',1);
+errorbar(1:16, mean_FUE_3, max_FUE_3-min_FUE_1, '--ok', 'LineWidth',1.3,'MarkerSize',2, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
+xlim([2 15]);
+ylim([0 3.0]);
+legend('X_4');
+
+supertitle('FUEs capacity','FontSize',14, 'FontWeight','bold');
+
+% xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
+% ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
 %%
 figure;
 hold on;
 grid on;
 box on;
 % plot( ones(1,16)*2.0, '--k', 'LineWidth',1 );
-plot(sum_FUE, '--*r', 'LineWidth',1,'MarkerSize',10);
-plot(sum_FUE_1, '--*b', 'LineWidth',1,'MarkerSize',10);
-plot(sum_FUE_2, '--*g', 'LineWidth',1,'MarkerSize',10);
-% plot(sum_FUE_4, '--*k', 'LineWidth',1,'MarkerSize',10);
+plot(sum_FUE, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
+plot(sum_FUE_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
+plot(sum_FUE_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+plot(sum_FUE_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
-xlim([2 16]);
-ylim([0 16]);
-legend({'proposed RF','[9]'},'FontSize',14, 'FontWeight','bold');
-
+xlim([2 15]);
+ylim([0 15]);
+% legend({'\alpha_1','\alpha_2', '\alpha_3'},'FontSize',14, 'FontWeight','bold');
+legend({'X_1','X_2', 'X_3', 'X_4'},'FontSize',14, 'FontWeight','bold');
+% zoomPlot to highlight a portion of the major plot 
+% [p,z] = zoomPlot(x,y,[5 50],[0.33 0.35 0.3 0.55],[1 3]); 
+% hold on 
+% plot(f1) 
+% legend hide
 
 %%%
 % figure;
