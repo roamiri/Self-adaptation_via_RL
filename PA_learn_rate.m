@@ -68,7 +68,7 @@ FBS{j} = fbs;
     count = 0;
     errorVector = zeros(1,Iterations);
     dth = 25; %meter
-    tt0 = tic;
+    tt = tic;
     for episode = 1:Iterations
 %          textprogressbar((episode/Iterations)*100);
         sumQ = sumQ * 0.0;
