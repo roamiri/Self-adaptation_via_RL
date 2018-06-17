@@ -22,7 +22,7 @@ for i=1:16
 
     
     for j=1:100
-        s = sprintf('Jun15/ILCL/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Jun13/SO_1/pro_IL_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -63,7 +63,7 @@ for i=1:16
     
     for j=1:100
 %         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Jun13/SO_1/pro_CL_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -174,8 +174,8 @@ box on;
 plot(ones(1,16)*1.0, '--k', 'LineWidth',1);
 plot(MUE_C, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(MUE_C_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
-plot(MUE_C_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
+% plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+% plot(MUE_C_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 title('MUE capacity','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
@@ -191,19 +191,19 @@ plot( ones(1,16)*1.0, '--k', 'LineWidth',1);
 for i=1:16
     vec = C_FUE_Mat{i};
     vec_ref = C_FUE_Mat_1{i};
-    vec_ilq = C_FUE_Mat_2{i};
-    vec_4 = C_FUE_Mat_3{i};
+%     vec_ilq = C_FUE_Mat_2{i};
+%     vec_4 = C_FUE_Mat_3{i};
     for j=1:size(vec,2)
         plot(i,vec(j), '*r', 'LineWidth',1,'MarkerSize',10);
         plot(i,vec_ref(j), '*b', 'LineWidth',1,'MarkerSize',10);
-        plot(i,vec_ilq(j), '*g', 'LineWidth',1,'MarkerSize',10);
-        plot(i,vec_4(j), '*k', 'LineWidth',1,'MarkerSize',10);
+%         plot(i,vec_ilq(j), '*g', 'LineWidth',1,'MarkerSize',10);
+%         plot(i,vec_4(j), '*k', 'LineWidth',1,'MarkerSize',10);
     end
 end
 plot(min_FUE, '--r', 'LineWidth',1,'MarkerSize',10);
 plot(min_FUE_1, '--b', 'LineWidth',1,'MarkerSize',10);
-plot(min_FUE_2, '--g', 'LineWidth',1,'MarkerSize',10);
-plot(min_FUE_3, '--k', 'LineWidth',1,'MarkerSize',10);
+% plot(min_FUE_2, '--g', 'LineWidth',1,'MarkerSize',10);
+% plot(min_FUE_3, '--k', 'LineWidth',1,'MarkerSize',10);
 title('FUEs capacity','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
@@ -213,7 +213,7 @@ legend({'threshold','proposed RF','[9]'},'FontSize',14, 'FontWeight','bold');
 %%
 figure;
 
-subplot(4,1,1);
+subplot(2,1,1);
 hold on;
 grid on;
 box on;
@@ -223,7 +223,7 @@ xlim([2 15]);
 ylim([0 3.0]);
 legend('X_1', 'Interpreter','latex');
 
-subplot(4,1,2);
+subplot(2,1,2);
 hold on;
 grid on;
 box on;
@@ -232,7 +232,7 @@ errorbar(1:16, mean_FUE_1, max_FUE_1-min_FUE_1, '--ob', 'LineWidth',1.3,'MarkerS
 xlim([2 15]);
 ylim([0 3.0]);
 legend('X_2');
-
+%%
 subplot(4,1,3);
 hold on;
 grid on;
@@ -265,8 +265,8 @@ box on;
 % plot( ones(1,16)*2.0, '--k', 'LineWidth',1 );
 plot(sum_FUE, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(sum_FUE_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-plot(sum_FUE_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
-plot(sum_FUE_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
+% plot(sum_FUE_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+% plot(sum_FUE_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');

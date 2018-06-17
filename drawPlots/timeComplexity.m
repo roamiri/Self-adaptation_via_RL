@@ -9,7 +9,7 @@ for i=1:16
     T = 0.0;
     
     for j=1:100
-        s = sprintf('oct27/R_18_CL3/pro_32_%d_%d.mat',i,j);
+        s = sprintf('Jun17/time/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -30,5 +30,5 @@ title('Time duration of proposed RF','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 ylabel('seconds','FontSize',14, 'FontWeight','bold');
 xlim([2 15]);
-% ylim([3e4 5e4]);
+ylim([0 10]);
 % legend({'proposed RF','[9]'},'FontSize',14, 'FontWeight','bold');
