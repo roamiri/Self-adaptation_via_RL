@@ -134,7 +134,7 @@ FBS{j} = fbs;
             fbs.C_FUE = log2(1+SINR_FUE_Vec(j));
             if mue.C < q_mue, I_mue = 0; else, I_mue = 1; end
             if fbs.C_FUE < q_fue, I_fue = 0; else, I_fue=1; end
-            fbs.s_new = 16*I_fue + fbs.index;
+            fbs.s_new = 16*I_mue + fbs.index;
 %             fbs.s_new = fbs.index;
 %             if mue.C <= q_mue
 %                 if (fbs.s_index>16), fbs.s_new = fbs.s_index-16; else, fbs.s_new = fbs.s_index; end
@@ -149,7 +149,12 @@ FBS{j} = fbs;
             
             % CALCULATING REWARD
             beta = fbs.dMUE/dth;
-            R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
+            if mue.C < q_mue
+                R = beta* fbs.C_FUE - (100/beta);
+            else
+                R = beta* fbs.C_FUE - (1/beta)*(mue.C-q_mue)^2;
+            end
+%             R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
 %             if j == size(FBS,2)
 %                 d_reward = fbs.dr(episode) + (gamma^episode) * R;
 %                 fbs.dr = [fbs.dr d_reward];
@@ -197,6 +202,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('Jun17/time/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Jun17/ref/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
