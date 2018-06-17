@@ -33,7 +33,7 @@ Q1 = ones(size(states,1) , Npower) * inf;
 sumQ = ones(size(states,1) , Npower) * 0.0;
 % meanQ = ones(size(states,1) , Npower) * 0.0;
 
-alpha = 0.5; gamma = 0.9; epsilon = 0.1 ; Iterations = 50000;
+alpha = 0.5; gamma = 0.9; epsilon = 0.1 ; Iterations = 75000;
 %% Generate the UEs
  mue = UE(204, 207);
 % mue(1) = UE(150, 150);
@@ -68,7 +68,7 @@ FBS{j} = fbs;
     count = 0;
     errorVector = zeros(1,Iterations);
     dth = 25; %meter
-    extra_time = 0.0;
+    tt0 = tic;
     for episode = 1:Iterations
 %          textprogressbar((episode/Iterations)*100);
         sumQ = sumQ * 0.0;
@@ -134,8 +134,8 @@ FBS{j} = fbs;
             fbs.C_FUE = log2(1+SINR_FUE_Vec(j));
             if mue.C < q_mue, I_mue = 0; else, I_mue = 1; end
             if fbs.C_FUE < q_fue, I_fue = 0; else, I_fue=1; end
-%             fbs.s_new = 16*I_fue + fbs.index;
-            fbs.s_new = fbs.index;
+            fbs.s_new = 16*I_fue + fbs.index;
+%             fbs.s_new = fbs.index;
 %             if mue.C <= q_mue
 %                 if (fbs.s_index>16), fbs.s_new = fbs.s_index-16; else, fbs.s_new = fbs.s_index; end
 %             else
@@ -195,7 +195,8 @@ FBS{j} = fbs;
     answer.C_FUE = c_fue;
     answer.sum_CFUE = sum_CFUE;
     answer.episode = episode;
+    answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('Jun15/ILCL/pro_CL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Jun17/time/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
