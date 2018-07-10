@@ -35,11 +35,12 @@ end
     fariness(i) = (num^2)/(n*denom);
 %     fairness_ref(i) = (num_ref^2)/(n*denom_ref);
 end
-plot(fariness, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
+plot(fariness, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
 % plot(fairness_ref, 'b--.', 'LineWidth',1,'MarkerSize',10);
-xlim([2 15]);
+% xlim([2 15]);
 ylim([0 1.05]);
-title('Fairness index','FontSize',14, 'FontWeight','bold');
-xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
-ylabel('Jains Index For Fairness','FontSize',14, 'FontWeight','bold');
-legend({'X_1','X_2', 'X_3', 'X_4'},'FontSize',14, 'FontWeight','bold');
+% title('Fairness index','FontSize',14, 'FontWeight','bold');
+xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
+ylabel('Jains Index For Fairness','FontSize',12);%, 'FontWeight','bold');
+% legend({'X_1','X_2', 'X_3', 'X_4'},'FontSize',14, 'FontWeight','bold');
+% legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');

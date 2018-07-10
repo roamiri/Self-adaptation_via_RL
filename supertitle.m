@@ -19,8 +19,8 @@ function supertitle(mytitle,varargin)
 
 axes('Units','Normal');
 h1 = title(mytitle,varargin{1:length(varargin)});
-h2 = xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
-h3 = ylabel('Mean capacity(b/s/Hz)','FontSize',14, 'FontWeight','bold');
+h2 = xlabel('FBS Numbers','FontSize',12);
+h3 = ylabel('Mean transmission rate(b/s/Hz)','FontSize',12);
 set(gca,'visible','off');
 set(h1,'visible','on');
 set(h2,'visible','on');
