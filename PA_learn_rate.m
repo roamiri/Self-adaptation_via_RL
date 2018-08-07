@@ -61,7 +61,7 @@ FBS{j} = fbs;
     fbsNum = size(FBS,2);
     G = zeros(fbsNum+1, fbsNum+1); % Matrix Containing small scale fading coefficients
     L = zeros(fbsNum+1, fbsNum+1); % Matrix Containing large scale fading coefficients
-    [G, L] = measure_channel(FBS,MBS,mue,NumRealization);
+    [G, L] = measure_channel_3GPP(FBS,MBS,mue,NumRealization);
     %% Main Loop
 %     fprintf('Loop for %d number of FBS :\t', fbsCount);
 %      textprogressbar(sprintf('calculating outputs:'));
@@ -202,6 +202,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('July10/ILCL/pro_CL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Aug7/IL/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
