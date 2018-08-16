@@ -28,14 +28,16 @@ classdef FemtoStation_dual_strip
       apt_strip = 0
    end
    methods
-      function obj = FemtoStation_3S(xPos, yPos, BS, MUE, dFUE)
+      function obj = FemtoStation_3S(xPos, yPos, BS, MUE, dFUE, aptStrip)
         obj.X = xPos;
         obj.Y = yPos;
         obj.dBS = sqrt((xPos-BS.X)^2 + (yPos-BS.Y)^2);
         obj.dMUE = nearest_MUE(xPos, yPos, MUE);% sqrt((xPos-MUE.X)^2 + (yPos-MUE.Y)^2); %distance to nearest MUE
+        n = floor(2*rand);
         obj.dFUE = dFUE;
-        obj.FUEX = xPos;
-        obj.FUEY = yPos+dFUE;
+        obj.FUEX = xPos+dFUE*(-1)^n;
+        obj.FUEY = yPos+dFUE*(-1)^n;
+        obj.apt_strip = aptStrip;
       end
       
       function obj = setPower(obj,power)

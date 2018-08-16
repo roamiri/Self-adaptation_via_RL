@@ -6,22 +6,23 @@ function [G, L] = measure_channel_3GPP(FBS,MBS,MUE,NumRealization)
     for i=1:fbsNum
         xAgent = FBS{i}.X;
         yAgent = FBS{i}.Y;
+        strip = FBS{i}.apt_strip;
         for j=1:fbsNum
             d = sqrt((xAgent-FBS{j}.FUEX)^2+(yAgent-FBS{j}.FUEY)^2);
-            if i==j
-                PL0 = 38.46+20*log10(d)+0.7+18.3+5.0;
+            if strip==FBS{j}.apt_strip
+                PL0 = 56.76+20*log10(d)+0.7*d; %38.46+20*log10(d)+18.3+0.7d;
                 L(i,j) = 10^((PL0)/10);
             else
-                PL0 = max(15.3+37.6*log10(d), 38.46+20*log10(d))+0.7+18.3+5.0+20.0;
+                PL0 = max(15.3+37.6*log10(d), 38.46+20*log10(d))+38.3+0.7*d;
                 L(i,j) = 10^((PL0)/10);
             end        
         end
         d = sqrt((xAgent-MUE.X)^2+(yAgent-MUE.Y)^2);
-        PL0 = max(15.3+37.6*log10(d), 38.46+20*log10(d))+0.7+18.3+5.0+20.0;
+        PL0 = max(15.3+37.6*log10(d), 38.46+20*log10(d))+38.3+0.7*d;
         L(i,fbsNum+1) = 10.^((PL0)/10);
         
         d = sqrt((MBS.X-FBS{i}.FUEX)^2+(MBS.Y-FBS{i}.FUEY)^2);
-        PL_BS = 15.3+37.6*log10(d)+20;
+        PL_BS = 35.3+37.6*log10(d);
         L(fbsNum+1,i) = 10^((PL_BS)/10);
     end
     d = sqrt((MBS.X-MUE.X).^2+(MBS.Y-MUE.Y).^2);

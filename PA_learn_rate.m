@@ -17,7 +17,7 @@ Pmax = 25; %dBm
 
 %% Minimum Rate Requirements for N MUE users
 N = 3;
-q_mue = 2.0; q_fue=4.0;
+q_mue = 1.0; q_fue=1.0;
 %% Q-Learning variables
 % Actions
 actions = linspace(Pmin, Pmax, Npower);
@@ -81,7 +81,7 @@ FBS{j} = fbs;
             fbs = FBS{j};
             kk = fbs.s_index;
             if CL == 1 
-                [M, index] = max(sumQ(kk,:));     % CL method
+                [M, index] = max(sumQ(kk,:));    %CL method
             else                                    
                 [M, index] = max(fbs.Q(kk,:));   %IL method
             end
@@ -101,7 +101,7 @@ FBS{j} = fbs;
                       fbs.P = actions(index);
                 else
                     if CL == 1 
-                        [M, index] = max(sumQ(kk,:));     % CL method
+                        [M, index] = max(sumQ(kk,:));    %CL method
                     else                                    
                         [M, index] = max(fbs.Q(kk,:));   %IL method
                     end
@@ -202,6 +202,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('Aug7/IL2/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Aug16/IL2/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
