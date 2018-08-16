@@ -12,7 +12,7 @@ end
 
 parfor_progress(100);
  parfor i=1:100
-    fullRun(permutationsMat(i,:),i);
+    fullRun40(permutationsMat(i,:),i);
     pause(rand);
     parfor_progress;
  end
