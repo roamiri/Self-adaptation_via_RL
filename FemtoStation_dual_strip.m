@@ -28,7 +28,7 @@ classdef FemtoStation_dual_strip
       apt_strip = 0
    end
    methods
-      function obj = FemtoStation_3S(xPos, yPos, BS, MUE, dFUE, aptStrip)
+      function obj = FemtoStation_dual_strip(xPos, yPos, BS, MUE, dFUE, aptStrip)
         obj.X = xPos;
         obj.Y = yPos;
         obj.dBS = sqrt((xPos-BS.X)^2 + (yPos-BS.Y)^2);
