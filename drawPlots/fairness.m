@@ -19,7 +19,7 @@ box on;
 fariness = zeros(1,16);
 fariness_ref = zeros(1,16);
 for i=1:16
-vec = C_FUE_Mat_1{i};
+vec = C_FUE_Mat_2{i};
 % vec_ref = C_FUE_Mat_ref{i};
 num = 0.0;
 num_ref = 0.0;
@@ -35,7 +35,7 @@ end
     fariness(i) = (num^2)/(n*denom);
 %     fairness_ref(i) = (num_ref^2)/(n*denom_ref);
 end
-plot(fariness, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
+plot(fariness, '--og', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
 % plot(fairness_ref, 'b--.', 'LineWidth',1,'MarkerSize',10);
 % xlim([2 15]);
 ylim([0 1.05]);
