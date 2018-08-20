@@ -11,7 +11,7 @@ filename = strcat(s);
 load(filename);
 
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
@@ -19,7 +19,7 @@ box on;
 fariness = zeros(1,16);
 fariness_ref = zeros(1,16);
 for i=1:16
-vec = C_FUE_Mat_2{i};
+vec = C_FUE_Mat{i};
 % vec_ref = C_FUE_Mat_ref{i};
 num = 0.0;
 num_ref = 0.0;

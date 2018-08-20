@@ -9,7 +9,7 @@ sum_FUE = [];
 mean_FUE = [];
 max_FUE = [];
 C_FUE_Mat = cell(1,40);
-for i=1:40
+for i=1:10
     fprintf('FBS num = %d\t', i);
     maxmue = 0.;
     maxfue = 0.;
@@ -23,7 +23,7 @@ for i=1:40
     
     for j=1:100
 %         s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
-        s = sprintf('Aug7/IL/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug20/IL/pro_IL_77_%d_%d.mat',i,j);
 %         s = sprintf('Aug16/IL/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -173,7 +173,7 @@ figure;
 hold on;
 grid on;
 box on;
-plot(ones(1,40)*1.0, '--k', 'LineWidth',1);
+plot(ones(1,10)*1.0, '--k', 'LineWidth',1);
 plot(MUE_C, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 % plot(MUE_C_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
 % plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
@@ -193,7 +193,7 @@ figure;
 hold on;
 grid on;
 box on;
-plot( ones(1,40)*1.0, '--k', 'LineWidth',1);
+plot( ones(1,10)*1.0, '--k', 'LineWidth',1);
 for i=1:40
     vec = C_FUE_Mat{i};
 %     vec_ref = C_FUE_Mat_1{i};
@@ -223,8 +223,8 @@ figure;
 hold on;
 grid on;
 box on;
-plot(1:40, ones(1,40)*1.0, '--k', 'LineWidth',1);
-errorbar(1:40, mean_FUE, max_FUE-min_FUE, '--or', 'LineWidth',1.3,'MarkerSize',2, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
+plot(1:10, ones(1,10)*1.0, '--k', 'LineWidth',1);
+errorbar(1:10, mean_FUE, max_FUE-min_FUE, '--or', 'LineWidth',1.3,'MarkerSize',2, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 %  xlim([1 16]);
 % ylim([0 4.0]);
 % legend({'qos','proposed RF'}, 'FontSize',12);
