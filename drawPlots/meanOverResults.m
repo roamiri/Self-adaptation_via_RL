@@ -93,7 +93,7 @@ sum_FUE_2 = [];
 mean_FUE_2 = [];
 max_FUE_2 = [];
 C_FUE_Mat_2 = cell(1,16);
-for i=1:16
+for i=1:10
     fprintf('FBS num = %d\t', i);
     maxmue = 0.;
     maxfue = 0.;
@@ -106,7 +106,7 @@ for i=1:16
     
     for j=1:100
 %         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Aug7/IL2/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug20/IL3/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -176,14 +176,14 @@ box on;
 plot(ones(1,10)*1.0, '--k', 'LineWidth',1);
 plot(MUE_C, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(MUE_C_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-% plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
 % plot(MUE_C_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 % title('MUE transmission rate','FontSize',12);%, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 % xlim([1 16]);
 % ylim([0 4]);
-legend({'qos', 'IL','CL', '2,4'},'Interpreter','latex','FontSize',12);
+legend({'qos', 'IL','CL', '$\rho$'},'Interpreter','latex','FontSize',12);
 % legend({'qos','IL+$\mathcal{X}_2$','CL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', '$CL+\mathcal{X}_3$'},'Interpreter','latex','FontSize',12);
 % legend({'$\mathbf{\tilde{q}}$','IL+$\mathbf{X}_1$','CL+$\mathbf{X}_2$', 'X_3', 'X_4'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
 % legend({'$\mathbf{\tilde{q}}$','IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
@@ -219,7 +219,7 @@ ylabel('Transmission rate(b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 %%
 figure;
 
-subplot(2,1,1);
+subplot(3,1,1);
 hold on;
 grid on;
 box on;
@@ -232,7 +232,7 @@ legend({'qos','IL'}, 'FontSize',12);
 % legend({'qos','IL+$\mathcal{X}_2$'},'FontSize',10, 'Interpreter','latex');
 
 
-subplot(2,1,2);
+subplot(3,1,2);
 hold on;
 grid on;
 box on;
@@ -243,16 +243,17 @@ errorbar(1:10, mean_FUE_1, max_FUE_1-min_FUE_1, '--ob', 'LineWidth',1.3,'MarkerS
 % legend({'qos','proximity RF'},'FontSize',12);
 legend({'qos', 'CL'},'Interpreter','latex','FontSize',12);
 % legend({'qos','CL+$\mathcal{X}_2$'},'FontSize',10, 'Interpreter','latex');
-%%
+
 subplot(3,1,3);
 hold on;
 grid on;
 box on;
-plot(1:16, ones(1,16)*4.0, '--k', 'LineWidth',1);
-errorbar(1:16, mean_FUE_2, max_FUE_2-min_FUE_2, '--og', 'LineWidth',1.3,'MarkerSize',2, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
-xlim([1 16]);
+plot(1:10, ones(1,10)*.50, '--k', 'LineWidth',1);
+errorbar(1:10, mean_FUE_2, max_FUE_2-min_FUE_2, '--og', 'LineWidth',1.3,'MarkerSize',2, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+xlim([1 10]);
 % ylim([0 4.0]);
 % legend('X_3');
+legend({'qos', '$\rho$'},'Interpreter','latex','FontSize',12);
 % legend({'qos','CL+$\mathcal{X}_1$'},'FontSize',10, 'Interpreter','latex');
 %%
 subplot(4,1,4);
@@ -277,14 +278,14 @@ box on;
 % plot( ones(1,16)*2.0, '--k', 'LineWidth',1 );
 plot(sum_FUE, '--or', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(sum_FUE_1, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-% plot(sum_FUE_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+plot(sum_FUE_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
 % plot(sum_FUE_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Sum transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 % xlim([1 16]);
-% ylim([0 15]);
-legend({'IL','CL', '2,4'},'Interpreter','latex','FontSize',12);
+ ylim([0 15]);
+legend({'IL','CL', '$\rho$'},'Interpreter','latex','FontSize',12);
 % legend({'\alpha_1','\alpha_2', '\alpha_3'},'FontSize',14, 'FontWeight','bold');
 % legend({'X_1','X_2', 'X_3', 'X_4'},'FontSize',14, 'FontWeight','bold');
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
