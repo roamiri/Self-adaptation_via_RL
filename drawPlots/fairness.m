@@ -11,7 +11,7 @@ filename = strcat(s);
 load(filename);
 
 %%
-figure;
+% figure;
 hold on;
 grid on;
 box on;
@@ -19,7 +19,7 @@ box on;
 fariness = zeros(1,16);
 fariness_ref = zeros(1,16);
 for i=1:16
-vec = C_FUE_Mat{i};
+vec = C_FUE_Mat_1{i};
 % vec_ref = C_FUE_Mat_ref{i};
 num = 0.0;
 num_ref = 0.0;
@@ -35,13 +35,13 @@ end
     fariness(i) = (num^2)/(n*denom);
 %     fairness_ref(i) = (num_ref^2)/(n*denom_ref);
 end
-plot(fariness, '--og', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+plot(fariness, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
 % plot(fairness_ref, 'b--.', 'LineWidth',1,'MarkerSize',10);
 % xlim([2 15]);
 ylim([0 1.05]);
 % title('Fairness index','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Jains Index For Fairness','FontSize',12);%, 'FontWeight','bold');
-legend({'old pathloss','new pathloss'},'Interpreter','latex','FontSize',12);
+legend({'IL','CL'},'Interpreter','latex','FontSize',12);
 % legend({'X_1','X_2', 'X_3', 'X_4'},'FontSize',14, 'FontWeight','bold');
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
