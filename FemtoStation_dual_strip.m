@@ -11,7 +11,7 @@ classdef FemtoStation_dual_strip
       FUEY
       M  % distance with MUE
       B  % distance with BS
-      dM1 = 15; dM2 = 50; dM3 = 125; 
+      dM1 = 15; dM2 = 30; dM3 = 45; 
       dB1 = 50; dB2 = 150; dB3 = 400;
       state = zeros(1,3)
       powerProfile = []
