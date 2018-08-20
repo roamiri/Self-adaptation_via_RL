@@ -23,7 +23,7 @@ for i=1:10
     
     for j=1:100
 %         s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
-        s = sprintf('Aug20/IL/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug20/IL2/pro_IL_77_%d_%d.mat',i,j);
 %         s = sprintf('Aug16/IL/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -64,7 +64,7 @@ for i=1:10
     lowCnt = 0;
     
     for j=1:100
-        s = sprintf('Aug20/CL/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug20/CL2/pro_IL_77_%d_%d.mat',i,j);
 %         s = sprintf('July10/ILCL/pro_CL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -223,7 +223,7 @@ subplot(2,1,1);
 hold on;
 grid on;
 box on;
-plot(1:10, ones(1,10)*1.0, '--k', 'LineWidth',1);
+plot(1:10, ones(1,10)*0.50, '--k', 'LineWidth',1);
 errorbar(1:10, mean_FUE, max_FUE-min_FUE, '--or', 'LineWidth',1.3,'MarkerSize',2, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 %  xlim([1 16]);
 % ylim([0 4.0]);
@@ -236,7 +236,7 @@ subplot(2,1,2);
 hold on;
 grid on;
 box on;
-plot(1:10, ones(1,10)*1.0, '--k', 'LineWidth',1);
+plot(1:10, ones(1,10)*0.50, '--k', 'LineWidth',1);
 errorbar(1:10, mean_FUE_1, max_FUE_1-min_FUE_1, '--ob', 'LineWidth',1.3,'MarkerSize',2, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
 %  xlim([1 16]);
 % ylim([0 4.0]);

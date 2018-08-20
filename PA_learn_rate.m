@@ -148,7 +148,7 @@ FBS{j} = fbs;
             qMax=max(fbs.Q,[],2);
             
             % CALCULATING REWARD
-            beta = fbs.dMUE/dth;
+            beta = 1;%fbs.dMUE/dth;
 %             if mue.C < q_mue
 %                 R = beta* fbs.C_FUE - (100/beta);
 %             else
@@ -202,6 +202,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('Aug20/IL2/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Aug20/IL3/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
