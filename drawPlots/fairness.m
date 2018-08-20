@@ -16,8 +16,8 @@ hold on;
 grid on;
 box on;
 
-fariness = zeros(1,16);
-fariness_ref = zeros(1,16);
+fariness = zeros(1,10);
+fariness_ref = zeros(1,10);
 for i=1:10
 vec = C_FUE_Mat_1{i};
 % vec_ref = C_FUE_Mat_ref{i};
@@ -37,7 +37,7 @@ end
 end
 plot(fariness, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
 % plot(fairness_ref, 'b--.', 'LineWidth',1,'MarkerSize',10);
-% xlim([2 15]);
+xlim([1 10]);
 ylim([0 1.05]);
 % title('Fairness index','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
