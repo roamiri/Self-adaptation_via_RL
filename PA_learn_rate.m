@@ -148,14 +148,14 @@ FBS{j} = fbs;
             qMax=max(fbs.Q,[],2);
             
             % CALCULATING REWARD
-            beta = 1;%fbs.dMUE/dth;
+            beta = fbs.dMUE/dth;
 %             if mue.C < q_mue
 %                 R = beta* fbs.C_FUE - (100/beta);
 %             else
 %                 R = beta* fbs.C_FUE - (1/beta)*(mue.C-q_mue)^2;
 %             end
-%             R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
-            R = fbs.C_FUE -(fbs.C_FUE-q_fue).^2;
+            R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
+%             R = fbs.C_FUE -(fbs.C_FUE-q_fue).^2;
 %             if j == size(FBS,2)
 %                 d_reward = fbs.dr(episode) + (gamma^episode) * R;
 %                 fbs.dr = [fbs.dr d_reward];
@@ -203,6 +203,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('Aug20/Rings/CL/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Aug20/R2/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
