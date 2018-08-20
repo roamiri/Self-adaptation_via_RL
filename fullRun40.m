@@ -5,31 +5,31 @@
 function fullRun40(femtocellPermutation,saveNum)
 
 %% Generate the UEs
-mue = UE(250, 175);
-MBS = BaseStation(0 , 0 , 50);
+mue = UE(25, 365);
+MBS = BaseStation(0 , 0 , 43);
 
 %Generate fbsCount=16 FBSs, FemtoStation is the agent of RL algorithm
-FBS_Max = cell(1,40);
-for i=1:10
-    FBS_Max{i} = FemtoStation_dual_strip(155+(i-1)*10,155, MBS, mue, 5, 0);
+FBS_Max = cell(1,10);
+for i=1:5
+    FBS_Max{i} = FemtoStation_dual_strip((i-1)*10+5,350, MBS, mue, 5, 0);
 end
 
-for i=1:10
-    FBS_Max{i+10} = FemtoStation_dual_strip(155+(i-1)*10,165, MBS, mue, 5, 0);
+for i=1:5
+    FBS_Max{i+5} = FemtoStation_dual_strip((i-1)*10+5,380, MBS, mue, 5, 0);
 end
 
-for i=1:10
-    FBS_Max{i+20} = FemtoStation_dual_strip(155+(i-1)*10,185, MBS, mue, 5, 1);
-end
+% for i=1:10
+%     FBS_Max{i+20} = FemtoStation_dual_strip(155+(i-1)*10,185, MBS, mue, 5, 1);
+% end
+% 
+% for i=1:10
+%     FBS_Max{i+30} = FemtoStation_dual_strip(155+(i-1)*10,195, MBS, mue, 5, 1);
+% end
 
+FBS_in = cell(1,10);
 for i=1:10
-    FBS_Max{i+30} = FemtoStation_dual_strip(155+(i-1)*10,195, MBS, mue, 5, 1);
-end
-
-FBS_in = cell(1,40);
-for i=1:40
     FBS_in{i} = FBS_Max{femtocellPermutation(i)};
-    FBS_in = PA_learn_rate(FBS_in, 32, i,femtocellPermutation,1e2, saveNum, 0);
+    FBS_in = PA_learn_rate(FBS_in, MBS, mue, 6, i,femtocellPermutation,1e2, saveNum, 0);
 end
 
 end

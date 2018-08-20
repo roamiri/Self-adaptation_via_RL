@@ -3,7 +3,7 @@
 %   Reinforcement Learning with random adding of femtocells to the network
 %   Independent Learning
 %
-function FBS_out = PA_learn_rate( FBS_in, Npower, fbsCount, femtocellPermutation, NumRealization, saveNum, CL)
+function FBS_out = PA_learn_rate( FBS_in, MBS, mue, Npower, fbsCount, femtocellPermutation, NumRealization, saveNum, CL)
 
 %% Initialization
 % clear all;
@@ -11,8 +11,8 @@ clc;
 % format short
 % format compact
 %% Parameters
-Pmin = -20;                                                                                                                                                                                                                                                                                                                                                                           %dBm
-Pmax = 25; %dBm
+Pmin = 5;                                                                                                                                                                                                                                                                                                                                                                           %dBm
+Pmax = 10; %dBm
 %StepSize = (Pmax-Pmin)/Npower; % dB
 
 %% Minimum Rate Requirements for N MUE users
@@ -35,11 +35,11 @@ sumQ = ones(size(states,1) , Npower) * 0.0;
 
 alpha = 0.5; gamma = 0.9; epsilon = 0.1 ; Iterations = 75000;
 %% Generate the UEs
- mue = UE(204, 207);
+%  mue = UE(204, 207);
 % mue(1) = UE(150, 150);
 % mue(1) = UE(-200, 0);
 % selectedMUE = mue(mueNumber);
-MBS = BaseStation(0 , 0 , 50);
+% MBS = BaseStation(0 , 0 , 50);
 %%
 % FBS = cell(1,2);
 FBS = FBS_in(1:fbsCount);
@@ -124,8 +124,8 @@ FBS{j} = fbs;
                 FBS{j} = fbs;
         end 
         % calc FUEs and MUEs capacity
-        SINR_FUE_Vec = SINR_FUE_2(G, L, FBS, MBS, -120);
-        mue.SINR = SINR_MUE_4(G, L, FBS, MBS, mue, -120);
+        SINR_FUE_Vec = SINR_FUE_2(G, L, FBS, MBS, -174);
+        mue.SINR = SINR_MUE_4(G, L, FBS, MBS, mue, -174);
         mue.C = log2(1+mue.SINR);
         
         for j=1:size(FBS,2)
@@ -202,6 +202,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('Aug16/IL/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Aug20/IL/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end

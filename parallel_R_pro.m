@@ -4,10 +4,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function parallel_R_pro(pref_poolSize)
 parpool(pref_poolSize)
-permutationsMat = zeros(100,40);
+permutationsMat = zeros(100,10);
 
 for i=1:100
-    permutationsMat(i,:) = randperm(40,40);
+    permutationsMat(i,:) = randperm(10,10);
 end
 
 parfor_progress(100);
