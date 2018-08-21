@@ -22,7 +22,7 @@ for i=1:10
 
     for j=1:100
 %         s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
-        s = sprintf('Aug20/R2/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug21/T2/pro_IL_77_%d_%d.mat',i,j);
 %         s = sprintf('Aug16/IL/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -63,7 +63,7 @@ for i=1:10
     lowCnt = 0;
     
     for j=1:100
-        s = sprintf('Aug21/T1/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug21/T3/pro_IL_77_%d_%d.mat',i,j);
 %         s = sprintf('July10/ILCL/pro_CL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -105,7 +105,7 @@ for i=1:10
     
     for j=1:100
 %         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Aug21/T2/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug21/T3/pro_CL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -199,13 +199,13 @@ for i=1:10
 %     vec_ilq = C_FUE_Mat_2{i};
 %     vec_4 = C_FUE_Mat_3{i};
     for j=1:size(vec,2)
-        plot(i,vec(j), 'sr', 'LineWidth',1.2,'MarkerSize',10, 'MarkerEdgeColor','r');
+%         plot(i,vec(j), 'sr', 'LineWidth',1.2,'MarkerSize',10, 'MarkerEdgeColor','r');
         plot(i,vec_ref(j), 'sb', 'LineWidth',1.2,'MarkerSize',10, 'MarkerEdgeColor','b');
 %         plot(i,vec_ilq(j), '*g', 'LineWidth',1,'MarkerSize',10);
 %         plot(i,vec_4(j), '*k', 'LineWidth',1,'MarkerSize',10);
     end
 end
-plot(min_FUE, '--r', 'LineWidth',1.2,'MarkerSize',10);
+% plot(min_FUE, '--r', 'LineWidth',1.2,'MarkerSize',10);
 plot(min_FUE_1, '--b', 'LineWidth',1.2,'MarkerSize',10);
 % plot(min_FUE_2, '--g', 'LineWidth',1,'MarkerSize',10);
 % plot(min_FUE_3, '--k', 'LineWidth',1,'MarkerSize',10);

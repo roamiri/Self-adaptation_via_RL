@@ -17,7 +17,7 @@ Pmax = 15; %dBm
 
 %% Minimum Rate Requirements for N MUE users
 N = 3;
-q_mue = 1.0; q_fue=0.50;
+q_mue = 4.0; q_fue=0.50;
 %% Q-Learning variables
 % Actions
 actions = linspace(Pmin, Pmax, Npower);
@@ -203,6 +203,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('Aug21/T3/pro_CL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Aug21/T4/pro_CL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
