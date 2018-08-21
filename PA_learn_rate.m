@@ -12,7 +12,7 @@ clc;
 % format compact
 %% Parameters
 Pmin = 5;                                                                                                                                                                                                                                                                                                                                                                           %dBm
-Pmax = 10; %dBm
+Pmax = 15; %dBm
 %StepSize = (Pmax-Pmin)/Npower; % dB
 
 %% Minimum Rate Requirements for N MUE users
@@ -203,6 +203,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('Aug21/T2/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Aug21/T3/pro_IL_77_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end

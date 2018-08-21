@@ -22,7 +22,7 @@ for i=1:10
 
     for j=1:100
 %         s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
-        s = sprintf('Aug20/R3/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug20/R2/pro_IL_77_%d_%d.mat',i,j);
 %         s = sprintf('Aug16/IL/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -63,7 +63,7 @@ for i=1:10
     lowCnt = 0;
     
     for j=1:100
-        s = sprintf('Aug20/R3/pro_CL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug21/T1/pro_IL_77_%d_%d.mat',i,j);
 %         s = sprintf('July10/ILCL/pro_CL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -105,7 +105,7 @@ for i=1:10
     
     for j=1:100
 %         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Aug20/R1/CL/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug21/T2/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -175,7 +175,7 @@ box on;
 plot(ones(1,10)*1.0, '--k', 'LineWidth',1);
 plot(MUE_C, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(MUE_C_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-% plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
 % plot(MUE_C_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 % title('MUE transmission rate','FontSize',12);%, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
@@ -218,7 +218,7 @@ ylabel('Transmission rate(b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 %%
 figure;
 
-subplot(2,1,1);
+subplot(3,1,1);
 hold on;
 grid on;
 box on;
@@ -231,7 +231,7 @@ legend({'qos','IL'}, 'FontSize',12);
 % legend({'qos','IL+$\mathcal{X}_2$'},'FontSize',10, 'Interpreter','latex');
 
 
-subplot(2,1,2);
+subplot(3,1,2);
 hold on;
 grid on;
 box on;
@@ -242,8 +242,8 @@ errorbar(1:10, mean_FUE_1, max_FUE_1-min_FUE_1, '--ob', 'LineWidth',1.3,'MarkerS
 % legend({'qos','proximity RF'},'FontSize',12);
 legend({'qos', 'CL'},'Interpreter','latex','FontSize',12);
 % legend({'qos','CL+$\mathcal{X}_2$'},'FontSize',10, 'Interpreter','latex');
-%%
-subplot(4,1,3);
+
+subplot(3,1,3);
 hold on;
 grid on;
 box on;
@@ -277,7 +277,7 @@ box on;
 % plot( ones(1,16)*2.0, '--k', 'LineWidth',1 );
 plot(sum_FUE, '--or', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(sum_FUE_1, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-% plot(sum_FUE_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
+plot(sum_FUE_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
 % plot(sum_FUE_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
