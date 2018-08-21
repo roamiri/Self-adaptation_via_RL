@@ -20,10 +20,9 @@ for i=1:10
     Cnt = 0;
     lowCnt = 0;
 
-    
     for j=1:100
 %         s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
-        s = sprintf('Aug20/R2/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug20/R3/pro_IL_77_%d_%d.mat',i,j);
 %         s = sprintf('Aug16/IL/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -64,7 +63,7 @@ for i=1:10
     lowCnt = 0;
     
     for j=1:100
-        s = sprintf('Aug20/R2/pro_CL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug20/R3/pro_CL_77_%d_%d.mat',i,j);
 %         s = sprintf('July10/ILCL/pro_CL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
