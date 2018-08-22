@@ -23,8 +23,8 @@ q_mue = 4.0; q_fue=0.50;
 actions = linspace(Pmin, Pmax, Npower);
 
 % States
-states = allcomb(0:1, 0:3 , 0:3); % states = (I_MUE, I_FUE, dMUE , dBS)
-
+% states = allcomb(0:1, 0:3 , 0:3); % states = (I_MUE, I_FUE, dMUE , dBS)
+states = allcomb(0:1, 0:1, 0:3 , 0:3);
 % Q-Table
 % Q = zeros(size(states,1) , size(actions , 2));
 Q_init = ones(size(states,1) , Npower) * 0.0;
