@@ -15,7 +15,7 @@ for i=1:5
 end
 
 for i=1:5
-    FBS_Max{i+5} = FemtoStation_dual_strip((i-1)*10+5,380, MBS, mue, 5, 0);
+    FBS_Max{i+5} = FemtoStation_dual_strip((i-1)*10+5,380, MBS, mue, 5, 1);
 end
 
 % for i=1:10

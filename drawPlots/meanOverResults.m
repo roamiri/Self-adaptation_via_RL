@@ -22,7 +22,7 @@ for i=1:10
 
     for j=1:100
 %         s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
-        s = sprintf('Aug21/T2/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug21/T3/pro_IL_77_%d_%d.mat',i,j);
 %         s = sprintf('Aug16/IL/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -63,7 +63,7 @@ for i=1:10
     lowCnt = 0;
     
     for j=1:100
-        s = sprintf('Aug21/T3/pro_IL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug21/T4/pro_IL_77_%d_%d.mat',i,j);
 %         s = sprintf('July10/ILCL/pro_CL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -105,7 +105,7 @@ for i=1:10
     
     for j=1:100
 %         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Aug21/T3/pro_CL_77_%d_%d.mat',i,j);
+        s = sprintf('Aug21/T4/pro_CL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -172,7 +172,7 @@ figure;
 hold on;
 grid on;
 box on;
-plot(ones(1,10)*1.0, '--k', 'LineWidth',1);
+plot(ones(1,10)*4.0, '--k', 'LineWidth',1);
 plot(MUE_C, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(MUE_C_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
 plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
