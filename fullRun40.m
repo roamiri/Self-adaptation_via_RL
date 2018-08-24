@@ -29,7 +29,7 @@ end
 FBS_in = cell(1,10);
 for i=1:10
     FBS_in{i} = FBS_Max{femtocellPermutation(i)};
-    FBS_in = PA_learn_rate(FBS_in, MBS, mue, 11, i,femtocellPermutation,1e2, saveNum, 1);
+    FBS_in = PA_greedy(FBS_in, MBS, mue, 11, i,femtocellPermutation,1e2, saveNum, 1);
 end
 
 end
