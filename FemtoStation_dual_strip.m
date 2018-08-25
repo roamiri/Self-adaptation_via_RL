@@ -26,6 +26,8 @@ classdef FemtoStation_dual_strip
       alpha
       Error
       apt_strip = 0
+      SINR_min
+      SINR_max
    end
    methods
       function obj = FemtoStation_dual_strip(xPos, yPos, BS, MUE, dFUE, aptStrip)

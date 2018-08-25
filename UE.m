@@ -5,6 +5,8 @@ classdef UE
       SINR
       C
       C_profile = []
+      SINR_min
+      SINR_max
    end
    methods
       function obj = UE(xPos, yPos)
