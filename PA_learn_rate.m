@@ -136,8 +136,8 @@ FBS{j} = fbs;
             if fbs.C_FUE < q_fue, I_fue = 0; else, I_fue=1; end
 %            fbs.s_new = 16*I_fue + fbs.index; % state set X_2
 %            fbs.s_new = 16*I_mue + fbs.index; % state set X_3
-%             fbs.s_new = fbs.index; % state set X_1
-              fbs.s_new = 32*I_mue+16*I_fue + fbs.index; % state set X_4
+            fbs.s_new = fbs.index; % state set X_1
+%               fbs.s_new = 32*I_mue+16*I_fue + fbs.index; % state set X_4
 %             if mue.C <= q_mue
 %                 if (fbs.s_index>16), fbs.s_new = fbs.s_index-16; else, fbs.s_new = fbs.s_index; end
 %             else
@@ -156,7 +156,8 @@ FBS{j} = fbs;
 %             else
 %                 R = beta* fbs.C_FUE - (1/beta)*(mue.C-q_mue)^2;
 %             end
-             R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
+%              R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
+             R = (fbs.C_FUE-q_fue).^3 + (1/beta)*(mue.C-q_mue)^3;
 %              R = -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
 %             R = fbs.C_FUE -(fbs.C_FUE-q_fue).^2;
 %             if j == size(FBS,2)
@@ -206,6 +207,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('Aug22/T1/prox_4_CL_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('Aug26/T1/prox_1_IL_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
