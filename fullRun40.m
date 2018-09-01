@@ -5,7 +5,7 @@
 function fullRun40(femtocellPermutation,saveNum)
 
 %% Generate the UEs
-mue = UE(25, 365);
+mue = UE(25, 500);
 MBS = BaseStation(0 , 0 , 33);
 
 %Generate fbsCount=16 FBSs, FemtoStation is the agent of RL algorithm
