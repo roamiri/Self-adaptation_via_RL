@@ -11,11 +11,11 @@ MBS = BaseStation(0 , 0 , 33);
 %Generate fbsCount=16 FBSs, FemtoStation is the agent of RL algorithm
 FBS_Max = cell(1,10);
 for i=1:5
-    FBS_Max{i} = FemtoStation_dual_strip((i-1)*10+5,350, MBS, mue, 5, 0);
+    FBS_Max{i} = FemtoStation_dual_strip((i-1)*10+5,500-15, MBS, mue, 5, 0);
 end
 
 for i=1:5
-    FBS_Max{i+5} = FemtoStation_dual_strip((i-1)*10+5,380, MBS, mue, 5, 1);
+    FBS_Max{i+5} = FemtoStation_dual_strip((i-1)*10+5,500+15, MBS, mue, 5, 1);
 end
 
 % for i=1:10

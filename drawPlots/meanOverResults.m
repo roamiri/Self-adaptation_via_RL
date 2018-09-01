@@ -25,7 +25,7 @@ for i=1:10
     diffFUE = 0;
     for j=1:500
 %         s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
-        s = sprintf('Aug26/T1/prox_1_IL_%d_%d.mat',i,j);
+        s = sprintf('Sep1/T1/pro_x1_IL_%d_%d.mat',i,j);
 %         s = sprintf('Aug16/IL/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -76,7 +76,7 @@ for i=1:10
     diffFUE = 0;
     
     for j=1:500
-        s = sprintf('Aug26/T1/pro_x2_IL_%d_%d.mat',i,j);
+        s = sprintf('Sep1/T1/pro_x2_IL_%d_%d.mat',i,j);
 %         s = sprintf('July10/ILCL/pro_CL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -128,7 +128,7 @@ for i=1:10
     
     for j=1:500
 %         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Aug26/T1/pro_x3_IL_%d_%d.mat',i,j);
+        s = sprintf('Sep1/T1/pro_x3_IL_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -208,15 +208,15 @@ for i=1:10
     diff_FUE_3 = [diff_FUE_3 diffFUE./Cnt];
 end
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
 plot(ones(1,10)*4.0, '--k', 'LineWidth',1);
-% plot(MUE_C, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
+plot(MUE_C, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
 % plot(MUE_C_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
-% plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g');%, 'MarkerEdgeColor','b');
-plot(MUE_C_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');%, 'MarkerEdgeColor','b');
+plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g');%, 'MarkerEdgeColor','b');
+% plot(MUE_C_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');%, 'MarkerEdgeColor','b');
 % title('MUE transmission rate','FontSize',12);%, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('MUE transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
