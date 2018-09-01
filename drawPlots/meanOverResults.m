@@ -221,7 +221,7 @@ plot(MUE_C_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g');%, 
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('MUE transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
-ylim([3 10]);
+% ylim([3 10]);
 % legend({'qos', 'IL','CL'},'Interpreter','latex','FontSize',12);
 legend({'qos','IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'IL+$\mathcal{X}_3$', 'IL+$\mathcal{X}_4$'},'Interpreter','latex','FontSize',12);
 % legend({'qos','$\mathcal{X}_1$','$\mathcal{X}_2$', '$\mathcal{X}_3$', '$\mathcal{X}_4$'},'Interpreter','latex','FontSize',12);
@@ -235,7 +235,7 @@ grid on;
 box on;
 plot(ones(1,10)*.50, '--k', 'LineWidth',1);
 plot(mean_FUE, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
-plot(mean_FUE_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
+% plot(mean_FUE_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
 plot(mean_FUE_2, '--og', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g', 'MarkerEdgeColor','b');
 % plot(mean_FUE_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 % title('MUE transmission rate','FontSize',12);%, 'FontWeight','bold');
@@ -257,13 +257,13 @@ for i=1:10
     vec_ilq = C_FUE_Mat_2{i};
 %     vec_4 = C_FUE_Mat_3{i};
     for j=1:size(vec,2)
-%         plot(i,vec(j), 'sr', 'LineWidth',1.2,'MarkerSize',10, 'MarkerEdgeColor','r');
+        plot(i,vec(j), 'sr', 'LineWidth',1.2,'MarkerSize',10, 'MarkerEdgeColor','r');
 %         plot(i,vec_ref(j), 'sb', 'LineWidth',1.2,'MarkerSize',10, 'MarkerEdgeColor','b');
         plot(i,vec_ilq(j), '*g', 'LineWidth',1,'MarkerSize',10);
 %         plot(i,vec_4(j), '*k', 'LineWidth',1,'MarkerSize',10);
     end
 end
-% plot(min_FUE, '--r', 'LineWidth',1.2,'MarkerSize',10);
+plot(min_FUE, '--r', 'LineWidth',1.2,'MarkerSize',10);
 % plot(min_FUE_1, '--b', 'LineWidth',1.2,'MarkerSize',10);
 plot(min_FUE_2, '--g', 'LineWidth',1,'MarkerSize',10);
 % plot(min_FUE_3, '--k', 'LineWidth',1,'MarkerSize',10);
@@ -328,15 +328,15 @@ supertitle('','FontSize',14, 'FontWeight','bold');
 % xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 % ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
 % plot( ones(1,16)*2.0, '--k', 'LineWidth',1 );
 plot(sum_FUE, '--dr', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
-plot(sum_FUE_1, '--db', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
+% plot(sum_FUE_1, '--db', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
 plot(sum_FUE_2, '--dg', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g');%, 'MarkerEdgeColor','b');
-plot(sum_FUE_3, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');%, 'MarkerEdgeColor','b');
+% plot(sum_FUE_3, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');%, 'MarkerEdgeColor','b');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Sum transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
@@ -347,15 +347,15 @@ xlim([1 10]);
 legend({'X_1','X_2', 'X_3', 'X_4'},'FontSize',12);%, 'FontWeight','bold');
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
 % plot( ones(1,16)*2.0, '--k', 'LineWidth',1 );
 plot(failed_FUE, '--dr', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
-plot(failed_FUE_1, '--db', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
+% plot(failed_FUE_1, '--db', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
 plot(failed_FUE_2, '--dg', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','g');%, 'MarkerEdgeColor','b');
-plot(failed_FUE_3, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');%, 'MarkerEdgeColor','b');
+% plot(failed_FUE_3, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');%, 'MarkerEdgeColor','b');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Failed FUEs (%)','FontSize',12);%, 'FontWeight','bold');

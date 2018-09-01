@@ -17,7 +17,7 @@ Pmax = 15; %dBm
 
 %% Minimum Rate Requirements for N MUE users
 N = 3;
-q_mue = 4.0; q_fue=0.50;
+q_mue = 6.0; q_fue=0.50;
 %% Q-Learning variables
 % Actions
 actions = linspace(Pmin, Pmax, Npower);
