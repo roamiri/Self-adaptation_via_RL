@@ -25,7 +25,7 @@ for i=1:10
     diffFUE = 0;
     for j=1:500
 %         s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
-        s = sprintf('Aug22/T1/pro_x_2_IL_%d_%d.mat',i,j);
+        s = sprintf('Sep1/T1/pro_x1_IL_%d_%d.mat',i,j);
 %         s = sprintf('Aug16/IL/pro_IL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -76,7 +76,7 @@ for i=1:10
     diffFUE = 0;
     
     for j=1:500
-        s = sprintf('Aug22/T1/pro_x_3_IL_%d_%d.mat',i,j);
+        s = sprintf('Sep1/T1/pro_x3_IL_%d_%d.mat',i,j);
 %         s = sprintf('July10/ILCL/pro_CL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -128,7 +128,7 @@ for i=1:10
     
     for j=1:500
 %         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Aug22/T1/pro_x_2_CL_%d_%d.mat',i,j);
+        s = sprintf('Sep1/T1/pro_x2_CL_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -180,7 +180,7 @@ for i=1:10
     for j=1:500
 %         s = sprintf('Aug26/T1/pro_greedy_%d_%d.mat',i,j);
 %        s = sprintf('Aug23/T2/pro_greedy_%d_%d.mat',i,j);
-        s = sprintf('Aug22/T1/pro_x_3_CL_%d_%d.mat',i,j);
+        s = sprintf('Sep1/T1/pro_x3_CL_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
