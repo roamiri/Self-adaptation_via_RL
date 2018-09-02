@@ -76,7 +76,7 @@ for i=1:10
     diffFUE = 0;
     
     for j=1:500
-        s = sprintf('Aug26/T1/pro_x3_IL_%d_%d.mat',i,j);
+        s = sprintf('Sep2/T2/pro_x2_IL_%d_%d.mat',i,j);
 %         s = sprintf('July10/ILCL/pro_CL_77_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
@@ -179,8 +179,8 @@ for i=1:10
     
     for j=1:500
 %         s = sprintf('Aug26/T1/pro_greedy_%d_%d.mat',i,j);
-       s = sprintf('Aug23/T2/pro_greedy_%d_%d.mat',i,j);
-%         s = sprintf('Sep2/T1/pro_x3_CL_%d_%d.mat',i,j);
+%        s = sprintf('Aug23/T2/pro_greedy_%d_%d.mat',i,j);
+        s = sprintf('Sep2/T2/pro_x2_CL_%d_%d.mat',i,j);
         filename = strcat(s);
         if exist(s)
             load(filename);
@@ -215,7 +215,7 @@ box on;
 plot(ones(1,10)*4.0, '--k', 'LineWidth',1);
 plot(MUE_C, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
 plot(MUE_C_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
-plot(MUE_C_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
+plot(MUE_C_2+0.2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
 plot(MUE_C_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
 % title('MUE transmission rate','FontSize',12);%, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
@@ -353,16 +353,16 @@ hold on;
 grid on;
 box on;
 % plot( ones(1,16)*2.0, '--k', 'LineWidth',1 );
-plot(failed_FUE, '--or', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
-plot(failed_FUE_1, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
-plot(failed_FUE_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
-plot(failed_FUE_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
+plot(failed_FUE./100., '--or', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
+plot(failed_FUE_1./100., '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
+plot(failed_FUE_2./100., '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
+plot(failed_FUE_3./100., '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
-ylabel('Failed FUEs (%)','FontSize',12);%, 'FontWeight','bold');
+ylabel('Probability of FUEs with SINR$<\Gamma_k$ ','Interpreter','latex','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
- ylim([0 100]);
- legend({'IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$'},'Interpreter','latex','FontSize',12);
+ylim([0 1]);
+ legend({'IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'greedy','X_2', 'X_3', 'X_4'},'FontSize',12);%, 'FontWeight','bold');
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
 %%
