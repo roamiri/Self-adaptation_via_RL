@@ -359,7 +359,7 @@ plot(failed_FUE_2./100., '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColo
 plot(failed_FUE_3./100., '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
-ylabel('Probability of FUEs with SINR$<\Gamma_k$ ','Interpreter','latex','FontSize',12);%, 'FontWeight','bold');
+ylabel('Probability of FUEs with $\gamma_k<\Gamma_k$ ','Interpreter','latex','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
 ylim([0 1]);
  legend({'IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
