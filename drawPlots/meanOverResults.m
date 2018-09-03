@@ -1,212 +1,18 @@
 
 clear;
 clc;
-
 %%
-MUE_C = [];    
-min_FUE = [];
-sum_FUE = [];
-mean_FUE = [];
-max_FUE = [];
-failed_FUE = [];
-diff_FUE = []; % difference of rate of failed FUEs from QoS
-C_FUE_Mat = cell(1,40);
-for i=1:10
-    fprintf('FBS num = %d\t', i);
-    maxmue = 0.;
-    maxfue = 0.;
-    mue_C = 0.;
-    minfue = 0.;
-    sumfue = 0.;
-    c_fue_vec = zeros(1,i);
-    Cnt = 0;
-    lowCnt = 0;
-    failedFUE = 0;
-    diffFUE = 0;
-    for j=1:500
-%         s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
-        s = sprintf('Aug26/T1/pro_x2_IL_%d_%d.mat',i,j);
-%         s = sprintf('Aug16/IL/pro_IL_77_%d_%d.mat',i,j);
-        filename = strcat(s);
-        if exist(s)
-            load(filename);
-%                 mue_C  = QFinal.mue.C;
-%                 cc = sum(C(40000:size(C,2)))/(-40000+size(C,2)+1);
-                mue_C = mue_C + QFinal.mue.C;
-                sumfue = sumfue + QFinal.sum_CFUE;
-                c_fue_vec = c_fue_vec + QFinal.C_FUE;
-                failedFUE = failedFUE + sum(QFinal.C_FUE<0.5);
-                if sum((QFinal.C_FUE<0.5)) > 0
-                    diffFUE = diffFUE + sum((QFinal.C_FUE<0.5).*(0.5-QFinal.C_FUE))./sum((QFinal.C_FUE<0.5));
-                end
-                Cnt = Cnt+1;
-        end
-    end
-    fprintf('Total Cnt = %d\n',Cnt);
-   
-    MUE_C = [MUE_C mue_C/Cnt]; 
-    sum_FUE = [sum_FUE sumfue/Cnt];
-    C_FUE_Mat{i} = c_fue_vec./Cnt;
-    mean_FUE = [mean_FUE mean(C_FUE_Mat{i})];
-    max_FUE = [max_FUE max(C_FUE_Mat{i})];
-    min_FUE = [min_FUE min(C_FUE_Mat{i})];
-    failed_FUE = [failed_FUE (failedFUE/(i*Cnt))*100];
-    diff_FUE = [diff_FUE diffFUE./(Cnt)];
-end
+T1 = 'Sep2/T2/pro_x2_IL_%d_%d.mat';
+T2 = 'Sep2/T2/pro_x3_IL_%d_%d.mat';
+T3 = 'Aug26/T1/pro_x2_IL_%d_%d.mat';
+T4 = 'Aug26/T1/pro_x3_IL_%d_%d.mat';
+T5 = 'Aug23/T2/pro_greedy_%d_%d.mat';
 %%
-MUE_C_1 = [];    
-min_FUE_1 = [];
-sum_FUE_1 = [];
-mean_FUE_1 = [];
-max_FUE_1 = [];
-failed_FUE_1 = [];
-diff_FUE_1 = [];
-C_FUE_Mat_1 = cell(1,16);
-for i=1:10
-    fprintf('FBS num = %d\t', i);
-    maxmue = 0.;
-    maxfue = 0.;
-    mue_C = 0.;
-    minfue = 0.;
-    sumfue = 0.;
-    c_fue_vec = zeros(1,i);
-    Cnt = 0;
-    lowCnt = 0;
-    failedFUE = 0;
-    diffFUE = 0;
-    
-    for j=1:500
-        s = sprintf('Sep2/T2/pro_x2_IL_%d_%d.mat',i,j);
-%         s = sprintf('July10/ILCL/pro_CL_77_%d_%d.mat',i,j);
-        filename = strcat(s);
-        if exist(s)
-            load(filename);
-%                 C = QFinal.mue.C_profile;
-%                 cc = sum(C(40000:size(C,2)))/(-40000+size(C,2)+1);
-                mue_C = mue_C + QFinal.mue.C;
-                sumfue = sumfue + QFinal.sum_CFUE;
-                c_fue_vec = c_fue_vec + QFinal.C_FUE;
-                failedFUE = failedFUE + sum(QFinal.C_FUE<0.5);
-                if sum((QFinal.C_FUE<0.5)) > 0
-                    diffFUE = diffFUE + sum((QFinal.C_FUE<0.5).*(0.5-QFinal.C_FUE))./sum((QFinal.C_FUE<0.5));
-                end
-                Cnt = Cnt+1;
-        end
-    end
-    fprintf('Total Cnt = %d\n',Cnt);
-    
-    MUE_C_1 = [MUE_C_1 mue_C/Cnt]; 
-    sum_FUE_1 = [sum_FUE_1 sumfue/Cnt];
-    C_FUE_Mat_1{i} = c_fue_vec./Cnt;
-    min_FUE_1 = [min_FUE_1 min(C_FUE_Mat_1{i})];
-    mean_FUE_1 = [mean_FUE_1 mean(C_FUE_Mat_1{i})];
-    max_FUE_1 = [max_FUE_1 max(C_FUE_Mat_1{i})];
-    failed_FUE_1 = [failed_FUE_1 (failedFUE/(i*Cnt))*100];
-    diff_FUE_1 = [diff_FUE_1 diffFUE./Cnt];
-end
-%%
-MUE_C_2 = [];    
-min_FUE_2 = [];
-sum_FUE_2 = [];
-mean_FUE_2 = [];
-max_FUE_2 = [];
-failed_FUE_2 = [];
-diff_FUE_2 = [];
-C_FUE_Mat_2 = cell(1,16);
-for i=1:10
-    fprintf('FBS num = %d\t', i);
-    maxmue = 0.;
-    maxfue = 0.;
-    mue_C = 0.;
-    minfue = 0.;
-    sumfue = 0.;
-    c_fue_vec = zeros(1,i);
-    Cnt = 0;
-    lowCnt = 0;
-    failedFUE = 0;
-    diffFUE = 0;
-    
-    for j=1:500
-%         s = sprintf('Rref_1/R3_%d_%d.mat',i,j);
-        s = sprintf('Sep2/T1/pro_x2_CL_%d_%d.mat',i,j);
-        filename = strcat(s);
-        if exist(s)
-            load(filename);
-%                 C = QFinal.mue.C_profile;
-%                 cc = sum(C(40000:size(C,2)))/(-40000+size(C,2)+1);
-                mue_C = mue_C + QFinal.mue.C;
-                sumfue = sumfue + QFinal.sum_CFUE;
-                c_fue_vec = c_fue_vec + QFinal.C_FUE;
-                failedFUE = failedFUE + sum(QFinal.C_FUE<0.5);
-                if sum((QFinal.C_FUE<0.5)) > 0
-                    diffFUE = diffFUE + sum((QFinal.C_FUE<0.5).*(0.5-QFinal.C_FUE))./sum((QFinal.C_FUE<0.5));
-                end
-                Cnt = Cnt+1;
-        end
-    end
-    fprintf('Total Cnt = %d\n',Cnt);
-    
-    MUE_C_2 = [MUE_C_2 mue_C/Cnt]; 
-    sum_FUE_2 = [sum_FUE_2 sumfue/Cnt];
-    C_FUE_Mat_2{i} = c_fue_vec./Cnt;
-    min_FUE_2 = [min_FUE_2 min(C_FUE_Mat_2{i})];
-    mean_FUE_2 = [mean_FUE_2 mean(C_FUE_Mat_2{i})];
-    max_FUE_2 = [max_FUE_2 max(C_FUE_Mat_2{i})];
-    failed_FUE_2 = [failed_FUE_2 (failedFUE/(i*Cnt))*100];
-    diff_FUE_2 = [diff_FUE_2 diffFUE./Cnt];
-end
-%%
-MUE_C_3 = [];    
-min_FUE_3 = [];
-sum_FUE_3 = [];
-mean_FUE_3 = [];
-max_FUE_3 = [];
-failed_FUE_3 = [];
-diff_FUE_3 = [];
-C_FUE_Mat_3 = cell(1,16);
-for i=1:10
-    fprintf('FBS num = %d\t', i);
-    maxmue = 0.;
-    maxfue = 0.;
-    mue_C = 0.;
-    minfue = 0.;
-    sumfue = 0.;
-    c_fue_vec = zeros(1,i);
-    Cnt = 0;
-    lowCnt = 0;
-    failedFUE = 0;
-    diffFUE = 0;
-    
-    for j=1:500
-%         s = sprintf('Aug26/T1/pro_greedy_%d_%d.mat',i,j);
-%        s = sprintf('Aug23/T2/pro_greedy_%d_%d.mat',i,j);
-        s = sprintf('Sep2/T2/pro_x2_CL_%d_%d.mat',i,j);
-        filename = strcat(s);
-        if exist(s)
-            load(filename);
-%                 C = QFinal.mue.C_profile;
-%                 cc = sum(C(40000:size(C,2)))/(-40000+size(C,2)+1);
-                mue_C = mue_C + QFinal.mue.C;
-                sumfue = sumfue + QFinal.sum_CFUE;
-                c_fue_vec = c_fue_vec + QFinal.C_FUE;
-                failedFUE = failedFUE + sum(QFinal.C_FUE<0.5);
-                if sum((QFinal.C_FUE<0.5)) > 0
-                    diffFUE = diffFUE + sum((QFinal.C_FUE<0.5).*(0.5-QFinal.C_FUE))./sum((QFinal.C_FUE<0.5));
-                end
-                Cnt = Cnt+1;
-        end
-    end
-    fprintf('Total Cnt = %d\n',Cnt);
-    
-    MUE_C_3 = [MUE_C_3 mue_C/Cnt]; 
-    sum_FUE_3 = [sum_FUE_3 sumfue/Cnt];
-    C_FUE_Mat_3{i} = c_fue_vec./Cnt;
-    min_FUE_3 = [min_FUE_3 min(C_FUE_Mat_3{i})];
-    mean_FUE_3 = [mean_FUE_3 mean(C_FUE_Mat_3{i})];
-    max_FUE_3 = [max_FUE_3 max(C_FUE_Mat_3{i})];
-    failed_FUE_3 = [failed_FUE_3 (failedFUE/(i*Cnt))*100];
-    diff_FUE_3 = [diff_FUE_3 diffFUE./Cnt];
-end
+[MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE] = performance(T1);
+[MUE_C_1 ,min_FUE_1 ,sum_FUE_1 ,mean_FUE_1 ,max_FUE_1 ,failed_FUE_1 ,diff_FUE_1] = performance(T2);
+[MUE_C_2 ,min_FUE_2 ,sum_FUE_2 ,mean_FUE_2 ,max_FUE_2 ,failed_FUE_2 ,diff_FUE_2] = performance(T3);
+[MUE_C_3 ,min_FUE_3 ,sum_FUE_3 ,mean_FUE_3 ,max_FUE_3 ,failed_FUE_3 ,diff_FUE_3] = performance(T4);
+[MUE_C_4 ,min_FUE_4 ,sum_FUE_4 ,mean_FUE_4 ,max_FUE_4 ,failed_FUE_4 ,diff_FUE_4] = performance(T5);
 %%
 figure;
 hold on;
@@ -215,19 +21,18 @@ box on;
 plot(ones(1,10)*4.0, '--k', 'LineWidth',1);
 plot(MUE_C, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
 plot(MUE_C_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
-plot(MUE_C_2+0.2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
+plot(MUE_C_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
 plot(MUE_C_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
+plot(MUE_C_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');%, 'MarkerEdgeColor','b');
 % title('MUE transmission rate','FontSize',12);%, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('MUE transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
 ylim([3 10]);
 % legend({'qos', 'IL','CL'},'Interpreter','latex','FontSize',12);
-legend({'QoS','IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
+legend({'QoS','CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'qos','$\mathcal{X}_1$','$\mathcal{X}_2$', '$\mathcal{X}_3$', '$\mathcal{X}_4$'},'Interpreter','latex','FontSize',12);
-% legend({'$\mathbf{\tilde{q}}$','IL+$\mathbf{X}_1$','CL+$\mathbf{X}_2$', 'X_3', 'X_4'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
-% legend({'$\mathbf{\tilde{q}}$','IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
-% legend({'qos','proposed RF','proximity RF'},'FontSize',12);%, 'FontWeight','bold','Interpreter','latex');
+% legend({'QoS','IL+$\mathcal{X}_1,\rho=1$','IL+$\mathcal{X}_2,\rho=1$', 'IL+$\mathcal{X}_1$', 'IL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 %%
 figure;
 hold on;
@@ -337,6 +142,7 @@ plot(sum_FUE, '--or', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r');%, 
 plot(sum_FUE_1, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
 plot(sum_FUE_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
 plot(sum_FUE_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
+plot(sum_FUE_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Sum transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
@@ -345,7 +151,7 @@ xlim([1 10]);
 % legend({'IL','CL', '$\rho$'},'Interpreter','latex','FontSize',12);
 % legend({'\alpha_1','\alpha_2', '\alpha_3'},'FontSize',14, 'FontWeight','bold');
 % legend({'X_1','X_2', 'X_3', 'X_4'},'FontSize',12);%, 'FontWeight','bold');
-legend({'IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$'},'Interpreter','latex','FontSize',12);
+legend({'CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
 %%
 figure;
@@ -357,12 +163,13 @@ plot(failed_FUE./100., '--or', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor'
 plot(failed_FUE_1./100., '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
 plot(failed_FUE_2./100., '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
 plot(failed_FUE_3./100., '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
+plot(failed_FUE_4./100., '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Probability of FUEs with $\gamma_k<\Gamma_k$ ','Interpreter','latex','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
 ylim([0 1]);
- legend({'IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
+legend({'CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'greedy','X_2', 'X_3', 'X_4'},'FontSize',12);%, 'FontWeight','bold');
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
 %%
@@ -382,3 +189,56 @@ xlim([1 10]);
  ylim([0 100]);
 legend({'greedy','X_2', 'X_3', 'X_4'},'FontSize',12);%, 'FontWeight','bold');
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
+%%
+function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE] = performance(T)
+    MUE_C = [];    
+    min_FUE = [];
+    sum_FUE = [];
+    mean_FUE = [];
+    max_FUE = [];
+    failed_FUE = [];
+    diff_FUE = []; % difference of rate of failed FUEs from QoS
+    C_FUE_Mat = cell(1,40);
+    for i=1:10
+        fprintf('FBS num = %d\t', i);
+        maxmue = 0.;
+        maxfue = 0.;
+        mue_C = 0.;
+        minfue = 0.;
+        sumfue = 0.;
+        c_fue_vec = zeros(1,i);
+        Cnt = 0;
+        lowCnt = 0;
+        failedFUE = 0;
+        diffFUE = 0;
+        for j=1:500
+    %         s = sprintf('Jun14/learn_rate/pro_IL_77_%d_%d.mat',i,j);
+            s = sprintf(T,i,j);
+    %         s = sprintf('Aug16/IL/pro_IL_77_%d_%d.mat',i,j);
+            filename = strcat(s);
+            if exist(s)
+                load(filename);
+    %                 mue_C  = QFinal.mue.C;
+    %                 cc = sum(C(40000:size(C,2)))/(-40000+size(C,2)+1);
+                    mue_C = mue_C + QFinal.mue.C;
+                    sumfue = sumfue + QFinal.sum_CFUE;
+                    c_fue_vec = c_fue_vec + QFinal.C_FUE;
+                    failedFUE = failedFUE + sum(QFinal.C_FUE<0.5);
+                    if sum((QFinal.C_FUE<0.5)) > 0
+                        diffFUE = diffFUE + sum((QFinal.C_FUE<0.5).*(0.5-QFinal.C_FUE))./sum((QFinal.C_FUE<0.5));
+                    end
+                    Cnt = Cnt+1;
+            end
+        end
+        fprintf('Total Cnt = %d\n',Cnt);
+
+        MUE_C = [MUE_C mue_C/Cnt]; 
+        sum_FUE = [sum_FUE sumfue/Cnt];
+        C_FUE_Mat{i} = c_fue_vec./Cnt;
+        mean_FUE = [mean_FUE mean(C_FUE_Mat{i})];
+        max_FUE = [max_FUE max(C_FUE_Mat{i})];
+        min_FUE = [min_FUE min(C_FUE_Mat{i})];
+        failed_FUE = [failed_FUE (failedFUE/(i*Cnt))*100];
+        diff_FUE = [diff_FUE diffFUE./(Cnt)];
+    end
+end
