@@ -58,6 +58,6 @@ final.rsum=Rmax;
 final.r = Rate_array;
 final.p = best_actions;
 final.time = toc(tStart);
-save(sprintf('oct4/ex/pro_ex_%d_%d.mat', kk, saveNum),'final');
+save(sprintf('oct4/ex/pro_ex_%d_%d.mat', fbsCount, saveNum),'final');
 FBS_out = FBS;
 end
