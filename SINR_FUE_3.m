@@ -1,12 +1,10 @@
-function SINR = SINR_FUE_2(G, L, FBS, MBS, sigma2)
-    MBS_P = MBS.P; %%TODO FIX IT!
-    fbsNum = size(FBS,2);
+function SINR = SINR_FUE_3(G, L, fbsNum, p_ar, MBS_P, sigma2)
     SINR = zeros(1,fbsNum);
     sigma = 10^((sigma2-30)/10);
     P_interf = 0.0;
     pAgent = zeros(1,fbsNum);
     for i=1:fbsNum
-        pAgent(i) = 10.^((FBS{i}.P-30)/10);
+        pAgent(i) = 10.^((p_ar{i}.P-30)/10);
     end
     
     for i=1:fbsNum
