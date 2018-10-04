@@ -5,10 +5,17 @@
 
 function FBS_out = PA_exhaustive_search( FBS_in, MBS, mue, Npower, fbsCount, femtocellPermutation, NumRealization, saveNum, kk)
 
+<<<<<<< HEAD
 if fbsCount<8
     FBS_out = FBS_in;
     return;
 end
+=======
+% if fbsCount<8
+%     FBS_out = FBS_in;
+%     return;
+% end
+>>>>>>> e24182d678e52282b1a71ca8f92a2c456852a9c9
 %% Initialization
 % clear all;
 clc;
