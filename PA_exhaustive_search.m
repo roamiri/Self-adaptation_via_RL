@@ -5,10 +5,10 @@
 
 function FBS_out = PA_exhaustive_search( FBS_in, MBS, mue, Npower, fbsCount, femtocellPermutation, NumRealization, saveNum, kk)
 
-% if fbsCount<10
-%     FBS_out = FBS_in;
-%     return;
-% end
+if fbsCount<10
+    FBS_out = FBS_in;
+    return;
+end
 %% Initialization
 % clear all;
 
@@ -36,45 +36,38 @@ R0max = 0;
 Rmax = 0; % maximum sum rate for FUEs
 Rate_array = zeros(1,K);
 best_actions = zeros(1,K);
-all_actions = permn(actions, K);
+all_actions = permn(actions, 7);
 tStart = tic;
-total_iter = size(all_actions,1);
+iterations = size(all_actions,1);
 
-% for j=1:11
-%     p8 = actions(j);
-%     for jj=1:11
-%         p9 = actions(jj);
-%         for jjj=1:11
-%             p10 = actions(jjj);
-%             fprintf('mini = %d ', j*jj*jjj);
-            for i = 1:size(all_actions,1)
-                p_ar = all_actions(i,:);
+p3_ar = permn(actions, 3);
+iterations1 = size(p3_ar,1);
+for j=1:iterations1
+    fprintf('mini= %d ', j);
+    for i = 1:iterations
+        p_ar = [all_actions(i,:) p3_ar(j,:)];
 
-                % calc FUEs and MUEs transmission rate
-                SINR_FUE_Vec = SINR_FUE_3(G, L, K, p_ar, MBS.P, -174);
-                r0 = log2(1+SINR_MUE_5(G, L, K, p_ar, MBS.P, -174));
+        % calc FUEs and MUEs transmission rate
+        SINR_FUE_Vec = SINR_FUE_3(G, L, K, p_ar, MBS.P, -174);
+        r0 = log2(1+SINR_MUE_5(G, L, K, p_ar, MBS.P, -174));
 
-                if r0>=q_mue
-                    rate_array = log2(1+SINR_FUE_Vec);
-                    rsum = sum(rate_array);
-                    if(rsum>Rmax)
-                        R0max = r0;
-                        Rmax = rsum;
-                        Rate_array=rate_array;
-                        best_actions = p_ar;
-                    end
-                end
+        if r0>=q_mue
+            rate_array = log2(1+SINR_FUE_Vec);
+            rsum = sum(rate_array);
+            if(rsum>Rmax)
+                R0max = r0;
+                Rmax = rsum;
+                Rate_array=rate_array;
+                best_actions = p_ar;
             end
-%         end
-%     end
-% end
-% fprintf('\n');
-
-final.r0 = R0max;
-final.rsum=Rmax;
-final.r = Rate_array;
-final.p = best_actions;
-final.time = toc(tStart);
-save(sprintf('oct4/ex/pro_ex_%d_%d.mat', fbsCount, saveNum),'final');
+        end
+    end
+    final.r0 = R0max;
+    final.rsum=Rmax;
+    final.r = Rate_array;
+    final.p = best_actions;
+    final.time = 0;
+    save(sprintf('oct4/p10/pro_ex_%d_%d_%d.mat', fbsCount, saveNum,j),'final');
+end
 FBS_out = FBS;
 end
