@@ -1,5 +1,6 @@
 function SINR = SINR_FUE_3(G, L, fbsNum, p_ar, MBS_P, sigma2)
     SINR = zeros(1,fbsNum);
+    mbsP = 10^((MBS_P-30)/10);
     sigma = 10^((sigma2-30)/10);
     P_interf = 0.0;
     pAgent = zeros(1,fbsNum);
@@ -13,6 +14,6 @@ function SINR = SINR_FUE_3(G, L, fbsNum, p_ar, MBS_P, sigma2)
                 P_interf = P_interf + pAgent(j)*(G(j,i)/L(j,i));
             end
         end
-        SINR(i) = (pAgent(i)*(G(i,i)/L(i,i)))/(MBS_P*(G(fbsNum+1,i)/L(fbsNum+1,i))+P_interf+sigma);
+        SINR(i) = (pAgent(i)*(G(i,i)/L(i,i)))/(mbsP*(G(fbsNum+1,i)/L(fbsNum+1,i))+P_interf+sigma);
     end
 end
