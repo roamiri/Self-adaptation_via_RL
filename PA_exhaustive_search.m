@@ -5,7 +5,7 @@
 
 function FBS_out = PA_exhaustive_search( FBS_in, MBS, mue, Npower, fbsCount, femtocellPermutation, NumRealization, saveNum, kk)
 
-if fbsCount<10
+if fbsCount<9
     FBS_out = FBS_in;
     return;
 end
