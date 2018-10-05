@@ -5,20 +5,13 @@
 
 function FBS_out = PA_exhaustive_search( FBS_in, MBS, mue, Npower, fbsCount, femtocellPermutation, NumRealization, saveNum, kk)
 
-<<<<<<< HEAD
-if fbsCount<8
+if fbsCount<9
     FBS_out = FBS_in;
     return;
 end
-=======
-% if fbsCount<8
-%     FBS_out = FBS_in;
-%     return;
-% end
->>>>>>> e24182d678e52282b1a71ca8f92a2c456852a9c9
 %% Initialization
 % clear all;
-clc;
+
 % format short
 % format compact
 %% Parameters
@@ -49,26 +42,30 @@ total_iter = size(all_actions,1);
 
 for j=1:11
     p8 = actions(j);
-    fprintf('iter = %d \n', j);
-    for i = 1:size(all_actions,1)
-        p_ar = [all_actions(i,:) p8];
-    
-        % calc FUEs and MUEs transmission rate
-        SINR_FUE_Vec = SINR_FUE_3(G, L, K, p_ar, MBS.P, -174);
-        r0 = log2(1+SINR_MUE_5(G, L, K, p_ar, MBS.P, -174));
+    for jj=1:11
+        p9 = actions(jj);
+        fprintf('mini = %d ', j*jj);
+        for i = 1:size(all_actions,1)
+            p_ar = [all_actions(i,:) p8 p9];
 
-        if r0>=q_mue
-            rate_array = log2(1+SINR_FUE_Vec);
-            rsum = sum(rate_array);
-            if(rsum>Rmax)
-                R0max = r0;
-                Rmax = rsum;
-                Rate_array=rate_array;
-                best_actions = p_ar;
+            % calc FUEs and MUEs transmission rate
+            SINR_FUE_Vec = SINR_FUE_3(G, L, K, p_ar, MBS.P, -174);
+            r0 = log2(1+SINR_MUE_5(G, L, K, p_ar, MBS.P, -174));
+
+            if r0>=q_mue
+                rate_array = log2(1+SINR_FUE_Vec);
+                rsum = sum(rate_array);
+                if(rsum>Rmax)
+                    R0max = r0;
+                    Rmax = rsum;
+                    Rate_array=rate_array;
+                    best_actions = p_ar;
+                end
             end
         end
     end
 end
+fprintf('\n');
 
 final.r0 = R0max;
 final.rsum=Rmax;
