@@ -2,16 +2,23 @@
 clear;
 clc;
 %%
+% rho is one
 T1 = 'oct4/T1/pro_x1_IL_%d_%d.mat';
 T2 = 'oct4/T1/pro_x2_IL_%d_%d.mat';
 T3 = 'oct4/T1/pro_x1_CL_%d_%d.mat';
 T4 = 'oct4/T1/pro_x2_CL_%d_%d.mat';
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
 %%
-T1 = 'Sep2/T2/pro_x2_IL_%d_%d.mat';
-T2 = 'Sep2/T2/pro_x3_IL_%d_%d.mat';
-T3 = 'Aug26/T1/pro_x2_IL_%d_%d.mat';
-T4 = 'Aug26/T1/pro_x3_IL_%d_%d.mat';
+T1 = 'oct8/T1/pro_x1_IL_%d_%d.mat';
+T2 = 'oct8/T1/pro_x2_IL_%d_%d.mat';
+T3 = 'oct4/T1/pro_x1_CL_%d_%d.mat';
+T4 = 'oct4/T1/pro_x2_CL_%d_%d.mat';
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%%
+T1 = 'Aug26/T1/pro_x2_IL_%d_%d.mat';%'Sep2/T2/pro_x2_IL_%d_%d.mat';
+T2 = 'Aug26/T1/pro_x3_IL_%d_%d.mat';%'Sep2/T2/pro_x3_IL_%d_%d.mat';
+T3 = 'Sep2/T2/pro_x2_CL_%d_%d.mat';
+T4 = 'Sep2/T2/pro_x3_CL_%d_%d.mat';
 T5 = 'Aug23/T2/pro_greedy_%d_%d.mat';
 %%
 [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE] = performance(T1);
@@ -35,7 +42,7 @@ xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('MUE transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
 % ylim([3 10]);
-% legend({'QoS','IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
+legend({'QoS','IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'qos', 'IL','CL'},'Interpreter','latex','FontSize',12);
 % legend({'QoS','CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'qos','$\mathcal{X}_1$','$\mathcal{X}_2$', '$\mathcal{X}_3$', '$\mathcal{X}_4$'},'Interpreter','latex','FontSize',12);
