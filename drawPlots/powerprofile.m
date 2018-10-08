@@ -2,11 +2,18 @@
 clear;
 clc;
 %%
-T0 = 'oct4/T1/pro_x1_IL_%d_%d.mat';
-T1 = 'oct4/T1/pro_x2_IL_%d_%d.mat';
-T2 = 'oct4/T1/pro_x1_CL_%d_%d.mat';
-T3 = 'oct4/T1/pro_x2_CL_%d_%d.mat';
-T4 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%% rho = defined, IL and CL original
+T1 = 'oct4/T1/pro_x1_IL_%d_%d.mat';
+T2 = 'oct4/T1/pro_x2_IL_%d_%d.mat';
+T3 = 'oct4/T1/pro_x1_CL_%d_%d.mat';
+T4 = 'oct4/T1/pro_x2_CL_%d_%d.mat';
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%% rho = 1, IL and CL original
+T1 = 'oct8/T2/pro_x1_IL_%d_%d.mat';
+T2 = 'oct8/T2/pro_x2_IL_%d_%d.mat';
+T3 = 'oct8/T2/pro_x1_CL_%d_%d.mat';
+T4 = 'oct8/T2/pro_x2_CL_%d_%d.mat';
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
 %%
 T0 = 'Sep2/T2/pro_x2_IL_%d_%d.mat';
 T1 = 'Sep2/T2/pro_x3_IL_%d_%d.mat';
@@ -14,11 +21,11 @@ T2 = 'Aug26/T1/pro_x2_IL_%d_%d.mat';
 T3 = 'Aug26/T1/pro_x3_IL_%d_%d.mat';
 T4 = 'Aug23/T2/pro_greedy_%d_%d.mat';
 %%
-[P_min_FUE, P_sum_FUE, P_mean_FUE, P_max_FUE ] = powerProfile(T0);
-[P_min_FUE_1, P_sum_FUE_1, P_mean_FUE_1, P_max_FUE_1 ] = powerProfile(T1);
-[P_min_FUE_2, P_sum_FUE_2, P_mean_FUE_2, P_max_FUE_2 ] = powerProfile(T2);
-[P_min_FUE_3, P_sum_FUE_3, P_mean_FUE_3, P_max_FUE_3 ] = powerProfile(T3);
-[P_min_FUE_4, P_sum_FUE_4, P_mean_FUE_4, P_max_FUE_4 ] = powerProfile(T4);
+[P_min_FUE, P_sum_FUE, P_mean_FUE, P_max_FUE ] = powerProfile(T1);
+[P_min_FUE_1, P_sum_FUE_1, P_mean_FUE_1, P_max_FUE_1 ] = powerProfile(T2);
+[P_min_FUE_2, P_sum_FUE_2, P_mean_FUE_2, P_max_FUE_2 ] = powerProfile(T3);
+[P_min_FUE_3, P_sum_FUE_3, P_mean_FUE_3, P_max_FUE_3 ] = powerProfile(T4);
+[P_min_FUE_4, P_sum_FUE_4, P_mean_FUE_4, P_max_FUE_4 ] = powerProfile(T5);
 %%
 figure;
 hold on;
