@@ -2,17 +2,17 @@
 clear;
 clc;
 %%
-% rho is one
+%% rho = defined, IL and CL original
 T1 = 'oct4/T1/pro_x1_IL_%d_%d.mat';
 T2 = 'oct4/T1/pro_x2_IL_%d_%d.mat';
 T3 = 'oct4/T1/pro_x1_CL_%d_%d.mat';
 T4 = 'oct4/T1/pro_x2_CL_%d_%d.mat';
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
-%%
-T1 = 'oct8/T1/pro_x1_IL_%d_%d.mat';
-T2 = 'oct8/T1/pro_x2_IL_%d_%d.mat';
-T3 = 'oct4/T1/pro_x1_CL_%d_%d.mat';
-T4 = 'oct4/T1/pro_x2_CL_%d_%d.mat';
+%% rho = 1, IL and CL original
+T1 = 'oct8/T2/pro_x1_IL_%d_%d.mat';
+T2 = 'oct8/T2/pro_x2_IL_%d_%d.mat';
+T3 = 'oct8/T2/pro_x1_CL_%d_%d.mat';
+T4 = 'oct8/T2/pro_x2_CL_%d_%d.mat';
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
 %%
 T1 = 'Aug26/T1/pro_x2_IL_%d_%d.mat';%'Sep2/T2/pro_x2_IL_%d_%d.mat';
