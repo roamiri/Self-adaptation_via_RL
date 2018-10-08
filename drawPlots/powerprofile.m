@@ -2,6 +2,12 @@
 clear;
 clc;
 %%
+T0 = 'oct4/T1/pro_x1_IL_%d_%d.mat';
+T1 = 'oct4/T1/pro_x2_IL_%d_%d.mat';
+T2 = 'oct4/T1/pro_x1_CL_%d_%d.mat';
+T3 = 'oct4/T1/pro_x2_CL_%d_%d.mat';
+T4 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%%
 T0 = 'Sep2/T2/pro_x2_IL_%d_%d.mat';
 T1 = 'Sep2/T2/pro_x3_IL_%d_%d.mat';
 T2 = 'Aug26/T1/pro_x2_IL_%d_%d.mat';
@@ -139,7 +145,7 @@ xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Sum power (mWatt)','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
 %  ylim([0 15]);
-legend({'CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
+% legend({'CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'IL','CL', '$\rho$'},'Interpreter','latex','FontSize',12);
 % legend({'\alpha_1','\alpha_2', '\alpha_3'},'FontSize',14, 'FontWeight','bold');
 % legend({'X_1','X_2', 'X_3', 'greedy'},'FontSize',12);%, 'FontWeight','bold');

@@ -157,9 +157,9 @@ FBS{j} = fbs;
 %                 R = beta* fbs.C_FUE - (1/beta)*(mue.C-q_mue)^2;
 %             end
 %              R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
-             R = (fbs.C_FUE-q_fue).^3 + (mue.C-q_mue)^3;
+%              R = (fbs.C_FUE-q_fue).^3 + (mue.C-q_mue)^3;
 %              R = (fbs.C_FUE-q_fue).^3 + (beta.^sign(mue.C-q_mue))*(mue.C-q_mue)^3;
-%              R = -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
+             R = -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
 %             R = fbs.C_FUE -(fbs.C_FUE-q_fue).^2;
 %             if j == size(FBS,2)
 %                 d_reward = fbs.dr(episode) + (gamma^episode) * R;
@@ -208,6 +208,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('oct4/T1/pro_x1_CL_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('oct8/T1/pro_x1_IL_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
