@@ -135,8 +135,8 @@ FBS{j} = fbs;
             if mue.C < q_mue, I_mue = 0; else, I_mue = 1; end
             if fbs.C_FUE < q_fue, I_fue = 0; else, I_fue=1; end
 %             fbs.s_new = fbs.index; % state set X_1
-%            fbs.s_new = 16*I_fue + fbs.index; % state set X_2
-           fbs.s_new = 16*I_mue + fbs.index; % state set X_3
+           fbs.s_new = 16*I_fue + fbs.index; % state set X_2
+%            fbs.s_new = 16*I_mue + fbs.index; % state set X_3
 %            fbs.s_new = 32*I_mue+16*I_fue + fbs.index; % state set X_4
 %             if mue.C <= q_mue
 %                 if (fbs.s_index>16), fbs.s_new = fbs.s_index-16; else, fbs.s_new = fbs.s_index; end
@@ -157,9 +157,9 @@ FBS{j} = fbs;
 %                 R = beta* fbs.C_FUE - (1/beta)*(mue.C-q_mue)^2;
 %             end
 %              R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
-             R = (fbs.C_FUE-q_fue).^3 + (mue.C-q_mue)^3;
+%              R = (fbs.C_FUE-q_fue).^3 + (mue.C-q_mue)^3;
 %              R = (fbs.C_FUE-q_fue).^3 + (beta.^sign(mue.C-q_mue))*(mue.C-q_mue)^3;
-%              R = -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
+             R = -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
 %             R = fbs.C_FUE -(fbs.C_FUE-q_fue).^2;
 %             if j == size(FBS,2)
 %                 d_reward = fbs.dr(episode) + (gamma^episode) * R;
@@ -208,6 +208,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('oct8/T3/pro_x2_IL_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('oct8/T3/pro_x1_CL_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
