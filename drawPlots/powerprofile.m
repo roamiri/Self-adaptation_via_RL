@@ -1,16 +1,34 @@
 %%
 clear;
 clc;
-%%
 %% rho = defined, IL and CL original
 T1 = 'oct4/T1/pro_x1_IL_%d_%d.mat';
 T2 = 'oct4/T1/pro_x2_IL_%d_%d.mat';
 T3 = 'oct4/T1/pro_x1_CL_%d_%d.mat';
 T4 = 'oct4/T1/pro_x2_CL_%d_%d.mat';
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
+% [P_min_FUE_2, P_sum_FUE_2, P_mean_FUE_2, P_max_FUE_2 ] = powerProfile(T3);
 %% rho = 1, IL and CL original
 T1 = 'oct8/T2/pro_x1_IL_%d_%d.mat';
 T2 = 'oct8/T2/pro_x2_IL_%d_%d.mat';
+T3 = 'oct8/T2/pro_x1_CL_%d_%d.mat';
+T4 = 'oct8/T2/pro_x2_CL_%d_%d.mat';
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%% rho = 1, IL and CL reverse reward functions
+T1 = 'oct8/T3/pro_x1_IL_%d_%d.mat';
+T2 = 'oct8/T3/pro_x2_IL_%d_%d.mat';
+T3 = 'oct8/T3/pro_x1_CL_%d_%d.mat';
+T4 = 'oct8/T3/pro_x2_CL_%d_%d.mat';
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%% rho=1, IL vs CL with ()^2 Reward function
+T1 = 'oct8/T2/pro_x1_IL_%d_%d.mat';
+T2 = 'oct8/T2/pro_x2_IL_%d_%d.mat';
+T3 = 'oct8/T3/pro_x1_CL_%d_%d.mat';
+T4 = 'oct8/T3/pro_x2_CL_%d_%d.mat';
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%% rho=1, IL vs CL with ()^3 Reward function
+T1 = 'oct8/T3/pro_x1_IL_%d_%d.mat';
+T2 = 'oct8/T3/pro_x2_IL_%d_%d.mat';
 T3 = 'oct8/T2/pro_x1_CL_%d_%d.mat';
 T4 = 'oct8/T2/pro_x2_CL_%d_%d.mat';
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
@@ -32,10 +50,10 @@ hold on;
 grid on;
 box on;
 % plot(ones(1,40)*1.0, '--k', 'LineWidth',1);
-plot(P_mean_FUE, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
-plot(P_min_FUE, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-plot(P_max_FUE, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
-% xlim([1 16]);
+plot(P_mean_FUE, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
+plot(P_min_FUE, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
+plot(P_max_FUE, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
+xlim([1 10]);
 ylim([0 15]);
 legend({'IL+X_1'},'Interpreter','latex','FontSize',12);
 %%
@@ -47,7 +65,7 @@ box on;
 plot(P_mean_FUE_1, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 plot(P_min_FUE_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
 plot(P_max_FUE_1, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
-% xlim([1 16]);
+xlim([1 10]);
 ylim([0 15]);
 legend({'IL+X_2'},'Interpreter','latex','FontSize',12);
 %%
@@ -56,24 +74,24 @@ hold on;
 grid on;
 box on;
 % plot(ones(1,40)*1.0, '--k', 'LineWidth',1);
-plot(P_mean_FUE_2, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
-plot(P_min_FUE_2, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-plot(P_max_FUE_2, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
-% xlim([1 16]);
+plot(P_mean_FUE_2, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
+plot(P_min_FUE_2, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
+plot(P_max_FUE_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
+xlim([1 10]);
 ylim([0 15]);
-legend({'X_3'},'Interpreter','latex','FontSize',12);
+legend({'CL+X_1'},'Interpreter','latex','FontSize',12);
 %%
 figure;
 hold on;
 grid on;
 box on;
 % plot(ones(1,40)*1.0, '--k', 'LineWidth',1);
-plot(P_mean_FUE_3, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
-plot(P_min_FUE_3, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-plot(P_max_FUE_3, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
-% xlim([1 16]);
+plot(P_mean_FUE_3, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
+plot(P_min_FUE_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
+plot(P_max_FUE_3, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
+xlim([1 10]);
 ylim([0 15]);
-legend({'X_4'},'Interpreter','latex','FontSize',12);
+legend({'CL+X_2'},'Interpreter','latex','FontSize',12);
 %%
 figure;
 hold on;

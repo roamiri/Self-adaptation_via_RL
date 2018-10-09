@@ -1,7 +1,6 @@
 
 clear;
 clc;
-%%
 %% rho = defined, IL and CL original
 T1 = 'oct4/T1/pro_x1_IL_%d_%d.mat';
 T2 = 'oct4/T1/pro_x2_IL_%d_%d.mat';
@@ -14,6 +13,25 @@ T2 = 'oct8/T2/pro_x2_IL_%d_%d.mat';
 T3 = 'oct8/T2/pro_x1_CL_%d_%d.mat';
 T4 = 'oct8/T2/pro_x2_CL_%d_%d.mat';
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%% rho = 1, IL and CL reverse reward functions
+T1 = 'oct8/T3/pro_x1_IL_%d_%d.mat';
+T2 = 'oct8/T3/pro_x2_IL_%d_%d.mat';
+T3 = 'oct8/T3/pro_x1_CL_%d_%d.mat';
+T4 = 'oct8/T3/pro_x2_CL_%d_%d.mat';
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%%
+%% rho=1, IL vs CL with ()^2 Reward function
+T1 = 'oct8/T2/pro_x1_IL_%d_%d.mat';
+T2 = 'oct8/T2/pro_x2_IL_%d_%d.mat';
+T3 = 'oct8/T3/pro_x1_CL_%d_%d.mat';
+T4 = 'oct8/T3/pro_x2_CL_%d_%d.mat';
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%% rho=1, IL vs CL with ()^3 Reward function
+T1 = 'oct8/T3/pro_x1_IL_%d_%d.mat';
+T2 = 'oct8/T3/pro_x2_IL_%d_%d.mat';
+T3 = 'oct8/T2/pro_x1_CL_%d_%d.mat';
+T4 = 'oct8/T2/pro_x2_CL_%d_%d.mat';
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
 %%
 T1 = 'Aug26/T1/pro_x2_IL_%d_%d.mat';%'Sep2/T2/pro_x2_IL_%d_%d.mat';
 T2 = 'Aug26/T1/pro_x3_IL_%d_%d.mat';%'Sep2/T2/pro_x3_IL_%d_%d.mat';
@@ -21,11 +39,11 @@ T3 = 'Sep2/T2/pro_x2_CL_%d_%d.mat';
 T4 = 'Sep2/T2/pro_x3_CL_%d_%d.mat';
 T5 = 'Aug23/T2/pro_greedy_%d_%d.mat';
 %%
-[MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE] = performance(T1);
-[MUE_C_1 ,min_FUE_1 ,sum_FUE_1 ,mean_FUE_1 ,max_FUE_1 ,failed_FUE_1 ,diff_FUE_1] = performance(T2);
-[MUE_C_2 ,min_FUE_2 ,sum_FUE_2 ,mean_FUE_2 ,max_FUE_2 ,failed_FUE_2 ,diff_FUE_2] = performance(T3);
-[MUE_C_3 ,min_FUE_3 ,sum_FUE_3 ,mean_FUE_3 ,max_FUE_3 ,failed_FUE_3 ,diff_FUE_3] = performance(T4);
-[MUE_C_4 ,min_FUE_4 ,sum_FUE_4 ,mean_FUE_4 ,max_FUE_4 ,failed_FUE_4 ,diff_FUE_4] = performance(T5);
+[MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, C_FUE_Mat] = performance(T1);
+[MUE_C_1 ,min_FUE_1 ,sum_FUE_1 ,mean_FUE_1 ,max_FUE_1 ,failed_FUE_1 ,diff_FUE_1, C_FUE_Mat_1] = performance(T2);
+[MUE_C_2 ,min_FUE_2 ,sum_FUE_2 ,mean_FUE_2 ,max_FUE_2 ,failed_FUE_2 ,diff_FUE_2, C_FUE_Mat_2] = performance(T3);
+[MUE_C_3 ,min_FUE_3 ,sum_FUE_3 ,mean_FUE_3 ,max_FUE_3 ,failed_FUE_3 ,diff_FUE_3, C_FUE_Mat_3] = performance(T4);
+[MUE_C_4 ,min_FUE_4 ,sum_FUE_4 ,mean_FUE_4 ,max_FUE_4 ,failed_FUE_4 ,diff_FUE_4, C_FUE_Mat_4] = performance(T5);
 %%
 figure;
 hold on;
@@ -95,7 +113,7 @@ ylabel('Transmission rate(b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 %%
 figure;
 
-subplot(3,1,1);
+subplot(4,1,1);
 hold on;
 grid on;
 box on;
@@ -108,7 +126,7 @@ legend({'IL+qos','$\mathcal{X}_1$'}, 'Interpreter','latex','FontSize',12);
 % legend({'qos','IL+$\mathcal{X}_2$'},'FontSize',10, 'Interpreter','latex');
 
 
-subplot(3,1,2);
+subplot(4,1,2);
 hold on;
 grid on;
 box on;
@@ -120,7 +138,7 @@ errorbar(1:10, mean_FUE_1, max_FUE_1-min_FUE_1, '--ob', 'LineWidth',1.3,'MarkerS
 legend({'qos', '$\mathcal{X}_2$'},'Interpreter','latex','FontSize',12);
 % legend({'qos','CL+$\mathcal{X}_2$'},'FontSize',10, 'Interpreter','latex');
 
-subplot(3,1,3);
+subplot(4,1,3);
 hold on;
 grid on;
 box on;
@@ -131,7 +149,7 @@ xlim([1 10]);
 % legend('X_3');
 legend({'qos', '$\mathcal{X}_3$'},'Interpreter','latex','FontSize',12);
 % legend({'qos','CL+$\mathcal{X}_1$'},'FontSize',10, 'Interpreter','latex');
-%%
+
 subplot(4,1,4);
 hold on;
 grid on;
@@ -204,7 +222,7 @@ xlim([1 10]);
 legend({'greedy','X_2', 'X_3', 'X_4'},'FontSize',12);%, 'FontWeight','bold');
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
 %%
-function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE] = performance(T)
+function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, C_FUE_Mat] = performance(T)
     MUE_C = [];    
     min_FUE = [];
     sum_FUE = [];
