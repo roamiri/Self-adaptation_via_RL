@@ -32,6 +32,26 @@ T2 = 'oct8/T3/pro_x2_IL_%d_%d.mat';
 T3 = 'oct8/T2/pro_x1_CL_%d_%d.mat';
 T4 = 'oct8/T2/pro_x2_CL_%d_%d.mat';
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
+%% rho=1, IL , ()^3 Reward function, different values for \gamma_k
+T1 = 'oct9/T1/pro_x1_IL_%d_%d.mat'; %\gamma=0
+T2 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %\gamma = 0.5
+T3 = 'oct9/T2/pro_x1_IL_%d_%d.mat'; %\gamma= 1.0
+%% IL RF=() vs RF=()^3 
+T1 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
+T2 = 'oct9/T3/pro_x1_IL_%d_%d.mat'; %()^1
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
+%% IL, ()^2 vs ()^3
+T1 = 'oct8/T2/pro_x1_IL_%d_%d.mat'; %()^2
+T2 = 'oct8/T2/pro_x2_IL_%d_%d.mat'; %()^2
+T3 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
+T4 = 'oct8/T3/pro_x2_IL_%d_%d.mat'; %()^3
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
+%% IL, exp()^2 vs ()^3
+T1 = 'oct11/T1/pro_x1_IL_%d_%d.mat'; %()^exp
+T2 = 'oct11/T1/pro_x2_IL_%d_%d.mat'; %()^exp
+T3 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
+T4 = 'oct8/T3/pro_x2_IL_%d_%d.mat'; %()^3
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
 %%
 T0 = 'Sep2/T2/pro_x2_IL_%d_%d.mat';
 T1 = 'Sep2/T2/pro_x3_IL_%d_%d.mat';
