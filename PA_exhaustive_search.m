@@ -5,10 +5,10 @@
 
 function FBS_out = PA_exhaustive_search( FBS_in, MBS, mue, Npower, fbsCount, femtocellPermutation, NumRealization, saveNum, kk)
 
-if fbsCount<9
-    FBS_out = FBS_in;
-    return;
-end
+% if fbsCount<9
+%     FBS_out = FBS_in;
+%     return;
+% end
 %% Initialization
 % clear all;
 
@@ -36,17 +36,17 @@ R0max = 0;
 Rmax = 0; % maximum sum rate for FUEs
 Rate_array = zeros(1,K);
 best_actions = zeros(1,K);
-all_actions = permn(actions, 7);
+all_actions = permn(actions, fbsCount);
 tStart = tic;
 iterations = size(all_actions,1);
 
 % p3_ar = permn(actions, 3);
-p2_ar = permn(actions, 2);
-iterations1 = size(p2_ar,1);
-for j=1:iterations1
-    fprintf('mini= %d ', j);
+% p2_ar = permn(actions, 2);
+% iterations1 = size(p2_ar,1);
+% for j=1:iterations
+%     fprintf('mini= %d ', j);
     for i = 1:iterations
-        p_ar = [all_actions(i,:) p2_ar(j,:)];
+        p_ar = all_actions(i,:);
 
         % calc FUEs and MUEs transmission rate
         SINR_FUE_Vec = SINR_FUE_3(G, L, K, p_ar, MBS.P, -174);
@@ -54,12 +54,14 @@ for j=1:iterations1
 
         if r0>=q_mue
             rate_array = log2(1+SINR_FUE_Vec);
-            rsum = sum(rate_array);
-            if(rsum>Rmax)
-                R0max = r0;
-                Rmax = rsum;
-                Rate_array=rate_array;
-                best_actions = p_ar;
+            if sum(rate_array>=q_fue)==fbsCount
+                rsum = sum(rate_array);
+                if(rsum>Rmax)
+                    R0max = r0;
+                    Rmax = rsum;
+                    Rate_array=rate_array;
+                    best_actions = p_ar;
+                end
             end
         end
     end
@@ -68,7 +70,7 @@ for j=1:iterations1
     final.r = Rate_array;
     final.p = best_actions;
     final.time = 0;
-    save(sprintf('oct4/p9/pro_ex_%d_%d_%d.mat', fbsCount, saveNum,j),'final');
-end
+    save(sprintf('oct13/ex/pro_ex_%d_%d.mat', fbsCount, saveNum),'final');
+% end
 FBS_out = FBS;
 end

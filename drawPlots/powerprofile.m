@@ -52,6 +52,12 @@ T2 = 'oct11/T1/pro_x2_IL_%d_%d.mat'; %()^exp
 T3 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
 T4 = 'oct8/T3/pro_x2_IL_%d_%d.mat'; %()^3
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
+%% IL, ICC vs ()^3
+T1 = 'oct12/T1/pro_x1_IL_%d_%d.mat'; %ICC
+T2 = 'oct12/T1/pro_x1_CL_%d_%d.mat'; %ICC
+T3 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
+T4 = 'oct8/T3/pro_x1_CL_%d_%d.mat'; %()^3
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
 %%
 T0 = 'Sep2/T2/pro_x2_IL_%d_%d.mat';
 T1 = 'Sep2/T2/pro_x3_IL_%d_%d.mat';

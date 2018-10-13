@@ -56,7 +56,21 @@ T2 = 'oct11/T1/pro_x2_IL_%d_%d.mat'; %()^exp
 T3 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
 T4 = 'oct8/T3/pro_x2_IL_%d_%d.mat'; %()^3
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
+%% IL, ICC vs ()^3
+T1 = 'oct12/T1/pro_x1_IL_%d_%d.mat'; %ICC
+T2 = 'oct12/T1/pro_x1_CL_%d_%d.mat'; %ICC
+T3 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
+T4 = 'oct8/T3/pro_x1_CL_%d_%d.mat'; %()^3
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
 %%
+T1 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; % ()^3
+T2 = 'oct8/T2/pro_x1_IL_%d_%d.mat'; % ()^2
+T3 = 'oct11/T1/pro_x1_IL_%d_%d.mat'; %()^exp
+T4 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
+T5 = 'oct4/T1/pro_x1_IL_%d_%d.mat'; % ()^2 with \rho
+%%
+T1 = 'Aug22/T1/pro_x_2_IL_%d_%d.mat';
+T2 = 'Aug22/T1/pro_x_3_IL_%d_%d.mat';
 T3 = 'Sep2/T2/pro_x2_CL_%d_%d.mat';
 T4 = 'Sep2/T2/pro_x3_CL_%d_%d.mat';
 T5 = 'Aug23/T2/pro_greedy_%d_%d.mat';
@@ -97,8 +111,8 @@ box on;
 plot(ones(1,10)*.50, '--k', 'LineWidth',1);
 plot(mean_FUE, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
 plot(mean_FUE_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
-% plot(mean_FUE_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
-% plot(mean_FUE_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
+plot(mean_FUE_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
+plot(mean_FUE_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
 % title('MUE transmission rate','FontSize',12);%, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
@@ -114,20 +128,20 @@ box on;
 plot( ones(1,10)*0.50, '--k', 'LineWidth',1);
 for i=1:10
     vec = C_FUE_Mat{i};
-%     vec_ref = C_FUE_Mat_1{i};
+    vec_ref = C_FUE_Mat_1{i};
     vec_ilq = C_FUE_Mat_2{i};
-%     vec_4 = C_FUE_Mat_3{i};
+    vec_4 = C_FUE_Mat_3{i};
     for j=1:size(vec,2)
         plot(i,vec(j), 'sr', 'LineWidth',1.2,'MarkerSize',10, 'MarkerEdgeColor','r');
-%         plot(i,vec_ref(j), 'sb', 'LineWidth',1.2,'MarkerSize',10, 'MarkerEdgeColor','b');
+        plot(i,vec_ref(j), 'sb', 'LineWidth',1.2,'MarkerSize',10, 'MarkerEdgeColor','b');
         plot(i,vec_ilq(j), '*g', 'LineWidth',1,'MarkerSize',10);
-%         plot(i,vec_4(j), '*k', 'LineWidth',1,'MarkerSize',10);
+        plot(i,vec_4(j), '*k', 'LineWidth',1,'MarkerSize',10);
     end
 end
 plot(min_FUE, '--r', 'LineWidth',1.2,'MarkerSize',10);
-% plot(min_FUE_1, '--b', 'LineWidth',1.2,'MarkerSize',10);
+plot(min_FUE_1, '--b', 'LineWidth',1.2,'MarkerSize',10);
 plot(min_FUE_2, '--g', 'LineWidth',1,'MarkerSize',10);
-% plot(min_FUE_3, '--k', 'LineWidth',1,'MarkerSize',10);
+plot(min_FUE_3, '--k', 'LineWidth',1,'MarkerSize',10);
 % title('FUEs capacity','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Transmission rate(b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
@@ -198,7 +212,7 @@ plot(sum_FUE, '--or', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r');%, 
 plot(sum_FUE_1, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
 plot(sum_FUE_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
 plot(sum_FUE_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
-plot(sum_FUE_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
+% plot(sum_FUE_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
 % plot(sum_FUE_5, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
@@ -216,16 +230,16 @@ hold on;
 grid on;
 box on;
 % plot( ones(1,16)*2.0, '--k', 'LineWidth',1 );
-plot(failed_FUE./100., '--or', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
-plot(failed_FUE_1./100., '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
-plot(failed_FUE_2./100., '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
-plot(failed_FUE_3./100., '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
-plot(failed_FUE_4./100., '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
+plot(1-failed_FUE, '--or', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
+plot(1-failed_FUE_1, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
+plot(1-failed_FUE_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
+plot(1-failed_FUE_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
+plot(1-failed_FUE_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
-ylabel('Probability of FUEs with $\gamma_k<\Gamma_k$ ','Interpreter','latex','FontSize',12);%, 'FontWeight','bold');
+ylabel('Probability of FUEs with $\gamma_k \geq \Gamma_k$ ','Interpreter','latex','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
-ylim([0 1]);
+% ylim([0 1]);
 % legend({'CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'greedy','X_2', 'X_3', 'X_4'},'FontSize',12);%, 'FontWeight','bold');
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
@@ -280,6 +294,9 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, C_FU
                     mue_C = mue_C + QFinal.mue.C;
                     sumfue = sumfue + QFinal.sum_CFUE;
                     c_fue_vec = c_fue_vec + QFinal.C_FUE;
+%                     if sum(QFinal.C_FUE<0.5) > 0
+%                         failedFUE = failedFUE + 1;
+%                     end
                     failedFUE = failedFUE + sum(QFinal.C_FUE<0.5);
                     if sum((QFinal.C_FUE<0.5)) > 0
                         diffFUE = diffFUE + sum((QFinal.C_FUE<0.5).*(0.5-QFinal.C_FUE))./sum((QFinal.C_FUE<0.5));
@@ -295,7 +312,7 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, C_FU
         mean_FUE = [mean_FUE mean(C_FUE_Mat{i})];
         max_FUE = [max_FUE max(C_FUE_Mat{i})];
         min_FUE = [min_FUE min(C_FUE_Mat{i})];
-        failed_FUE = [failed_FUE (failedFUE/(i*Cnt))*100];
+        failed_FUE = [failed_FUE (failedFUE/(i*Cnt))];
         diff_FUE = [diff_FUE diffFUE./(Cnt)];
     end
 end

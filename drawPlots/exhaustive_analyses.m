@@ -37,7 +37,7 @@ hold on;
 grid on;
 box on;
 % plot( ones(1,16)*2.0, '--k', 'LineWidth',1 );
-plot(failed_FUE./100., '--sk', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','k');%, 'MarkerEdgeColor','b');
+plot(1-failed_FUE, '--sk', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','k');%, 'MarkerEdgeColor','b');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Probability of FUEs with $\gamma_k<\Gamma_k$ ','Interpreter','latex','FontSize',12);%, 'FontWeight','bold');
@@ -73,7 +73,7 @@ function [MUE_C ,sum_FUE ,failed_FUE ,diff_FUE, P_sum_FUE] = performance_iter10(
     MUE_C = dum_final.r0; 
     sum_FUE = dum_final.rsum;
     C_FUE_Mat = dum_final.r;
-    failed_FUE = 100*(sum(dum_final.r<0.5)/10);
+    failed_FUE = (sum(dum_final.r<0.5)/10);
     diff_FUE = 0;
     P_FUE_Mat_W = 10.^(dum_final.p/(10));
     P_sum_FUE = sum(P_FUE_Mat_W);
@@ -141,7 +141,7 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_su
 %         mean_FUE = [mean_FUE mean(C_FUE_Mat{i})];
 %         max_FUE = [max_FUE max(C_FUE_Mat{i})];
 %         min_FUE = [min_FUE min(C_FUE_Mat{i})];
-    failed_FUE = [failed_FUE (failedFUE/(9*Cnt))*100];
+    failed_FUE = [failed_FUE (failedFUE/(9*Cnt))];
     diff_FUE = [diff_FUE diffFUE./(Cnt)];
     P_FUE_Mat_W = 10.^(p_fue_vec./(10*Cnt));
     P_sum_FUE = [P_sum_FUE sum(P_FUE_Mat_W)];
@@ -199,7 +199,7 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_su
 %         mean_FUE = [mean_FUE mean(C_FUE_Mat{i})];
 %         max_FUE = [max_FUE max(C_FUE_Mat{i})];
 %         min_FUE = [min_FUE min(C_FUE_Mat{i})];
-        failed_FUE = [failed_FUE (failedFUE/(i*Cnt))*100];
+        failed_FUE = [failed_FUE (failedFUE/(i*Cnt))];
         diff_FUE = [diff_FUE diffFUE./(Cnt)];
         P_FUE_Mat_W{i} = 10.^(p_fue_vec./(10*Cnt));
         P_sum_FUE = [P_sum_FUE sum(P_FUE_Mat_W{i})];
