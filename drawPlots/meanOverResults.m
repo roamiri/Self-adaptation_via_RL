@@ -62,12 +62,18 @@ T2 = 'oct12/T1/pro_x1_CL_%d_%d.mat'; %ICC
 T3 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
 T4 = 'oct8/T3/pro_x1_CL_%d_%d.mat'; %()^3
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
-%%
+%%  Compare all IL
 T1 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; % ()^3
 T2 = 'oct8/T2/pro_x1_IL_%d_%d.mat'; % ()^2
 T3 = 'oct11/T1/pro_x1_IL_%d_%d.mat'; %()^exp
 T4 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
 T5 = 'oct4/T1/pro_x1_IL_%d_%d.mat'; % ()^2 with \rho
+%%  Compare all CL instead of exp
+T1 = 'oct8/T2/pro_x1_CL_%d_%d.mat'; % ()^3
+T2 = 'oct8/T2/pro_x1_CL_%d_%d.mat'; % ()^2
+T3 = 'oct11/T1/pro_x1_IL_%d_%d.mat'; %()^exp
+T4 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
+T5 = 'oct4/T1/pro_x1_CL_%d_%d.mat'; % ()^2 with \rho
 %%
 T1 = 'Aug22/T1/pro_x_2_IL_%d_%d.mat';
 T2 = 'Aug22/T1/pro_x_3_IL_%d_%d.mat';
@@ -82,7 +88,7 @@ T5 = 'Aug23/T2/pro_greedy_%d_%d.mat';
 [MUE_C_4 ,min_FUE_4 ,sum_FUE_4 ,mean_FUE_4 ,max_FUE_4 ,failed_FUE_4 ,diff_FUE_4, C_FUE_Mat_4] = performance(T5);
 % [MUE_C_5 ,min_FUE_5 ,sum_FUE_5 ,mean_FUE_5 ,max_FUE_5 ,failed_FUE_5 ,diff_FUE_5, C_FUE_Mat_5] = performance(T6);
 %%
-figure;
+% figure;
 hold on;
 grid on;
 box on;
@@ -104,7 +110,7 @@ xlim([1 10]);
 % legend({'qos','$\mathcal{X}_1$','$\mathcal{X}_2$', '$\mathcal{X}_3$', '$\mathcal{X}_4$'},'Interpreter','latex','FontSize',12);
 % legend({'QoS','IL+$\mathcal{X}_1,\rho=1$','IL+$\mathcal{X}_2,\rho=1$', 'IL+$\mathcal{X}_1$', 'IL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 %%
-figure;
+% figure;
 hold on;
 grid on;
 box on;
@@ -203,7 +209,7 @@ supertitle('','FontSize',14, 'FontWeight','bold');
 % xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 % ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
 %%
-figure;
+% figure;
 hold on;
 grid on;
 box on;
@@ -212,7 +218,7 @@ plot(sum_FUE, '--or', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','r');%, 
 plot(sum_FUE_1, '--ob', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
 plot(sum_FUE_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r');%, 'MarkerEdgeColor','b');
 plot(sum_FUE_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b');%, 'MarkerEdgeColor','b');
-% plot(sum_FUE_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
+plot(sum_FUE_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
 % plot(sum_FUE_5, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
@@ -225,7 +231,7 @@ xlim([1 10]);
 % legend({'CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
 %%
-figure;
+% figure;
 hold on;
 grid on;
 box on;
@@ -294,10 +300,10 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, C_FU
                     mue_C = mue_C + QFinal.mue.C;
                     sumfue = sumfue + QFinal.sum_CFUE;
                     c_fue_vec = c_fue_vec + QFinal.C_FUE;
-%                     if sum(QFinal.C_FUE<0.5) > 0
-%                         failedFUE = failedFUE + 1;
-%                     end
-                    failedFUE = failedFUE + sum(QFinal.C_FUE<0.5);
+                    if sum(QFinal.C_FUE<0.5) > 0
+                        failedFUE = failedFUE + 1;
+                    end
+%                     failedFUE = failedFUE + sum(QFinal.C_FUE<0.5);
                     if sum((QFinal.C_FUE<0.5)) > 0
                         diffFUE = diffFUE + sum((QFinal.C_FUE<0.5).*(0.5-QFinal.C_FUE))./sum((QFinal.C_FUE<0.5));
                     end
@@ -312,7 +318,7 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, C_FU
         mean_FUE = [mean_FUE mean(C_FUE_Mat{i})];
         max_FUE = [max_FUE max(C_FUE_Mat{i})];
         min_FUE = [min_FUE min(C_FUE_Mat{i})];
-        failed_FUE = [failed_FUE (failedFUE/(i*Cnt))];
+        failed_FUE = [failed_FUE (failedFUE/(Cnt))];
         diff_FUE = [diff_FUE diffFUE./(Cnt)];
     end
 end

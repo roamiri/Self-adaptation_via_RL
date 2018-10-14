@@ -2,14 +2,15 @@
 clear;
 clc;
 %%
-T1 = 'oct4/ex/pro_ex_%d_%d.mat';
+% T1 = 'oct4/ex/pro_ex_%d_%d.mat'; % for maximum sumrate and r0>q_mue
+T1 = 'oct13/ex/pro_ex_%d_%d.mat'; % for maximum sumrate and r0>q_mue and r_k>q_fue for all k
 [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_sum_FUE] = performance(T1);
 T2 = 'oct4/p9/pro_ex_9_%d_%d.mat';
 [MUE_C(9) ,min_FUE ,sum_FUE(9) ,mean_FUE ,max_FUE ,failed_FUE(9) ,diff_FUE(9), P_sum_FUE(9)] = performance_iter(T2,9);
 T3 = 'oct4/p10/pro_ex_10_1_%d.mat';
 [MUE_C(10) ,sum_FUE(10) ,failed_FUE(10) ,diff_FUE(10), P_sum_FUE(10)] = performance_iter10(T3);
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
@@ -19,9 +20,9 @@ plot(MUE_C, '--sk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');%, 'M
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('MUE transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
-ylim([3 12]);
+ylim([0 12]);
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
@@ -32,7 +33,7 @@ ylabel('Sum transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
 ylim([0 20]);
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
@@ -40,11 +41,11 @@ box on;
 plot(1-failed_FUE, '--sk', 'LineWidth',1.2,'MarkerSize',8, 'MarkerFaceColor','k');%, 'MarkerEdgeColor','b');
 % title('SUM capacity of FUEs','FontSize',14, 'FontWeight','bold');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
-ylabel('Probability of FUEs with $\gamma_k<\Gamma_k$ ','Interpreter','latex','FontSize',12);%, 'FontWeight','bold');
+ylabel('Probability of FUEs with $\gamma_k \geq \Gamma_k$ ','Interpreter','latex','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
 ylim([0 1]);
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
@@ -96,7 +97,7 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_su
         dum = 0.;
         dum_final = [];
 %         fprintf('Comb num = %d\t', i);
-        for j=1:200
+        for j=1:121
             s = sprintf(T,i,j);
             filename = strcat(s);
             if exist(s)
@@ -168,7 +169,7 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_su
         c_fue_vec = zeros(1,i);
         p_fue_vec = zeros(1,i);
         Cnt = 0;
-        lowCnt = 0;
+        NoAnsCnt = 0;
         failedFUE = 0;
         diffFUE = 0;
         for j=1:100
@@ -178,17 +179,20 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_su
             filename = strcat(s);
             if exist(s)
                 load(filename);
-    %                 mue_C  = QFinal.mue.C;
-    %                 cc = sum(C(40000:size(C,2)))/(-40000+size(C,2)+1);
+                if final.r0>0
                     mue_C = mue_C + final.r0;
                     sumfue = sumfue + final.rsum;
                     c_fue_vec = c_fue_vec + final.r;
+                    p_fue_vec = p_fue_vec + final.p;
+                    Cnt = Cnt+1;
+                else
                     failedFUE = failedFUE + sum(final.r<0.5);
                     if sum((final.r<0.5)) > 0
                         diffFUE = diffFUE + sum((final.r<0.5).*(0.5-final.r))./sum((final.r<0.5));
                     end
-                    p_fue_vec = p_fue_vec + final.p;
-                    Cnt = Cnt+1;
+                    NoAnsCnt=NoAnsCnt+1;
+                end
+                
             end
         end
         fprintf('Total Cnt = %d\n',Cnt);
@@ -199,7 +203,7 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_su
 %         mean_FUE = [mean_FUE mean(C_FUE_Mat{i})];
 %         max_FUE = [max_FUE max(C_FUE_Mat{i})];
 %         min_FUE = [min_FUE min(C_FUE_Mat{i})];
-        failed_FUE = [failed_FUE (failedFUE/(i*Cnt))];
+        failed_FUE = [failed_FUE (NoAnsCnt/((Cnt+NoAnsCnt)))];
         diff_FUE = [diff_FUE diffFUE./(Cnt)];
         P_FUE_Mat_W{i} = 10.^(p_fue_vec./(10*Cnt));
         P_sum_FUE = [P_sum_FUE sum(P_FUE_Mat_W{i})];

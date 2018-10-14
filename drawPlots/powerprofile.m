@@ -181,7 +181,7 @@ legend({'$\mathcal{X}_4$'},'FontSize',10, 'Interpreter','latex');
 
 supertitle('','FontSize',14, 'FontWeight','bold');
 %%
-figure;
+% figure;
 hold on;
 grid on;
 box on;

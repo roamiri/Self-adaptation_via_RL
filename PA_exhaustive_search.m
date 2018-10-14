@@ -5,10 +5,10 @@
 
 function FBS_out = PA_exhaustive_search( FBS_in, MBS, mue, Npower, fbsCount, femtocellPermutation, NumRealization, saveNum, kk)
 
-% if fbsCount<9
-%     FBS_out = FBS_in;
-%     return;
-% end
+if fbsCount<8
+    FBS_out = FBS_in;
+    return;
+end
 %% Initialization
 % clear all;
 
@@ -43,10 +43,10 @@ iterations = size(all_actions,1);
 % p3_ar = permn(actions, 3);
 % p2_ar = permn(actions, 2);
 % iterations1 = size(p2_ar,1);
-% for j=1:iterations
-%     fprintf('mini= %d ', j);
+for j=1:11
+    fprintf('mini= %d ', j);
     for i = 1:iterations
-        p_ar = all_actions(i,:);
+        p_ar = [all_actions(i,:) actions(j)];
 
         % calc FUEs and MUEs transmission rate
         SINR_FUE_Vec = SINR_FUE_3(G, L, K, p_ar, MBS.P, -174);
@@ -65,6 +65,7 @@ iterations = size(all_actions,1);
             end
         end
     end
+end
     final.r0 = R0max;
     final.rsum=Rmax;
     final.r = Rate_array;
