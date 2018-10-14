@@ -36,7 +36,7 @@ R0max = 0;
 Rmax = 0; % maximum sum rate for FUEs
 Rate_array = zeros(1,K);
 best_actions = zeros(1,K);
-all_actions = permn(actions, fbsCount);
+all_actions = permn(actions, 7);
 tStart = tic;
 iterations = size(all_actions,1);
 
