@@ -66,6 +66,7 @@ for j=1:121
         end
     end
 end
+    fprintf('\n');
     final.r0 = R0max;
     final.rsum=Rmax;
     final.r = Rate_array;
