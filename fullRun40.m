@@ -28,7 +28,7 @@ end
 % end
 
 FBS_in = cell(1,10);
-for i=1:8
+for i=1:9
     FBS_in{i} = FBS_Max{femtocellPermutation(i)};
     FBS_in = PA_exhaustive_search(FBS_in, MBS, mue, 11, i,femtocellPermutation,1e2, saveNum, 0);
 end
