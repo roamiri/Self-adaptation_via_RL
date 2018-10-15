@@ -195,7 +195,7 @@ plot(P_sum_FUE_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k')
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Sum power (mWatt)','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
-%  ylim([0 15]);
+ylim([4 350]);
 % legend({'CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'IL','CL', '$\rho$'},'Interpreter','latex','FontSize',12);
 % legend({'\alpha_1','\alpha_2', '\alpha_3'},'FontSize',14, 'FontWeight','bold');
