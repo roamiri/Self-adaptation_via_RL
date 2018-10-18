@@ -23,7 +23,6 @@ end
 %% Parameters
 Pmin = 5;                                                                                                                                                                                                                                                                                                                                                                           %dBm
 Pmax = 15; %dBm
-
 %% Minimum Rate Requirements for N MUE users
 N = 3;
 q_mue = 4.0; q_fue=0.50;
@@ -78,13 +77,13 @@ y = linspace(FBS{fbsNum}.SINR_min, FBS{fbsNum}.SINR_max, 100);
 % r0 = log2(1+x);
 % ri = log2(1+y);
 
-r0 = linspace(-10,10,100);
-ri = linspace(-10,10,100);
+r0 = linspace(0,10,100);
+ri = linspace(0,10,100);
 
 [xx,yy] = meshgrid(r0,ri);
-beta = FBS{fbsNum}.dMUE/18;
+beta = 1;%FBS{fbsNum}.dMUE/18;
 
-% zz = beta.*yy.*xx -(yy-q_fue).^2 - (1/beta)*(xx-q_mue).^2;
+% zz = beta.*yy.*xx.^2 -(yy-q_fue).^2 - (1/beta)*(xx-q_mue).^2;
 % zz = -(yy-q_fue).^2 - (1./beta).*(xx-q_mue).^2;
 zz = (yy-q_fue).^3 + (beta).^sign(xx-q_mue).*(xx-q_mue).^3;
 zz = zz / max(max(abs(zz)));

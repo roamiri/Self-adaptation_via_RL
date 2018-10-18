@@ -1,4 +1,3 @@
-
 clear;
 clc;
 %% rho = defined, IL and CL original
@@ -19,7 +18,6 @@ T2 = 'oct8/T3/pro_x2_IL_%d_%d.mat';
 T3 = 'oct8/T3/pro_x1_CL_%d_%d.mat';
 T4 = 'oct8/T3/pro_x2_CL_%d_%d.mat';
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
-%%
 %% rho=1, IL vs CL with ()^2 Reward function
 T1 = 'oct8/T2/pro_x1_IL_%d_%d.mat';
 T2 = 'oct8/T2/pro_x2_IL_%d_%d.mat';
@@ -74,6 +72,12 @@ T2 = 'oct8/T2/pro_x1_CL_%d_%d.mat'; % ()^2
 T3 = 'oct11/T1/pro_x1_IL_%d_%d.mat'; %()^exp
 T4 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
 T5 = 'oct4/T1/pro_x1_CL_%d_%d.mat'; % ()^2 with \rho
+%% rho = 1, IL and CL original, smaller rings, epsilon=0.3
+T1 = 'oct16/T1/pro_x1_IL_%d_%d.mat';
+% T2 = 'oct8/T2/pro_x2_IL_%d_%d.mat';
+T3 = 'oct16/T1/pro_x1_CL_%d_%d.mat';
+% T4 = 'oct8/T2/pro_x2_CL_%d_%d.mat';
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat';
 %%
 T1 = 'Aug22/T1/pro_x_2_IL_%d_%d.mat';
 T2 = 'Aug22/T1/pro_x_3_IL_%d_%d.mat';
