@@ -13,7 +13,7 @@ clc;
 % format compact
 %% Parameters
 Pmin = 5;                                                                                                                                                                                                                                                                                                                                                                           %dBm
-Pmax = 15; %dBm
+Pmax = 45; %dBm
 %StepSize = (Pmax-Pmin)/Npower; % dB
 
 %% Minimum Rate Requirements for N MUE users
@@ -61,6 +61,6 @@ FBS = FBS_in(1:fbsCount);
     answer.sum_CFUE = sum_CFUE;
     answer.time = 0.0;
     QFinal = answer;
-    save(sprintf('oct4/T1/pro_greedy_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('oct19/T1/pro_greedy_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end

@@ -84,6 +84,19 @@ T2 = 'Aug22/T1/pro_x_3_IL_%d_%d.mat';
 T3 = 'Sep2/T2/pro_x2_CL_%d_%d.mat';
 T4 = 'Sep2/T2/pro_x3_CL_%d_%d.mat';
 T5 = 'Aug23/T2/pro_greedy_%d_%d.mat';
+%% rho=1, ()^3 vs +()^2+()^2
+T1 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
+T3 = 'oct18/T1/pro_x1_IL_%d_%d.mat'; %()^2
+T4 = 'oct18/T1/pro_x1_CL_%d_%d.mat'; %()^2
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
+%% 
+T1 = 'oct8/T2/pro_x1_IL_%d_%d.mat'; % --()^2
+T2 = 'oct11/T1/pro_x1_IL_%d_%d.mat'; % exp[-()^2]
+T3 = 'oct18/T1/pro_x1_IL_%d_%d.mat'; % ++()^2
+T4 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
+%%
+T5 = 'oct19/T1/pro_greedy_%d_%d.mat'; %% power allocation with Pmax=25dBm
 %%
 [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, C_FUE_Mat] = performance(T1);
 [MUE_C_1 ,min_FUE_1 ,sum_FUE_1 ,mean_FUE_1 ,max_FUE_1 ,failed_FUE_1 ,diff_FUE_1, C_FUE_Mat_1] = performance(T2);

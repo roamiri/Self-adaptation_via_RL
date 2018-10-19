@@ -84,8 +84,9 @@ ri = linspace(0,10,100);
 beta = 1;%FBS{fbsNum}.dMUE/18;
 
 % zz = beta.*yy.*xx.^2 -(yy-q_fue).^2 - (1/beta)*(xx-q_mue).^2;
-% zz = -(yy-q_fue).^2 - (1./beta).*(xx-q_mue).^2;
-zz = (yy-q_fue).^3 + (beta).^sign(xx-q_mue).*(xx-q_mue).^3;
+zz = +(yy-q_fue).^3 - (1./beta).*(xx-q_mue).^2;
+% zz = (yy-q_fue).^3 + (beta).^sign(xx-q_mue).*(xx-q_mue).^3;
+% zz = yy - (1./beta).*(xx-q_mue).^2;
 zz = zz / max(max(abs(zz)));
 
 figure;

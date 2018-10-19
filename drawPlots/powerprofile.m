@@ -46,7 +46,7 @@ T2 = 'oct8/T2/pro_x2_IL_%d_%d.mat'; %()^2
 T3 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
 T4 = 'oct8/T3/pro_x2_IL_%d_%d.mat'; %()^3
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
-%% IL, exp()^2 vs ()^3
+%% IL, exp() vs ()^3
 T1 = 'oct11/T1/pro_x1_IL_%d_%d.mat'; %()^exp
 T2 = 'oct11/T1/pro_x2_IL_%d_%d.mat'; %()^exp
 T3 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
@@ -64,6 +64,17 @@ T1 = 'Sep2/T2/pro_x3_IL_%d_%d.mat';
 T2 = 'Aug26/T1/pro_x2_IL_%d_%d.mat';
 T3 = 'Aug26/T1/pro_x3_IL_%d_%d.mat';
 T4 = 'Aug23/T2/pro_greedy_%d_%d.mat';
+%% rho=1, ()^3 vs +()^2+()^2
+T1 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
+T3 = 'oct18/T1/pro_x1_IL_%d_%d.mat'; %()^2
+T4 = 'oct18/T1/pro_x1_CL_%d_%d.mat'; %()^2
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
+%% 
+T1 = 'oct8/T2/pro_x1_IL_%d_%d.mat'; % --()^2
+T2 = 'oct11/T1/pro_x1_IL_%d_%d.mat'; % exp[-()^2]
+T3 = 'oct18/T1/pro_x1_IL_%d_%d.mat'; % ++()^2
+T4 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
 %%
 [P_min_FUE, P_sum_FUE, P_mean_FUE, P_max_FUE ] = powerProfile(T1);
 [P_min_FUE_1, P_sum_FUE_1, P_mean_FUE_1, P_max_FUE_1 ] = powerProfile(T2);
