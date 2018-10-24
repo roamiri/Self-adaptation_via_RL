@@ -87,48 +87,56 @@ hold on;
 grid on;
 box on;
 % plot(ones(1,40)*1.0, '--k', 'LineWidth',1);
+plot(P_max_FUE, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(P_mean_FUE, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 plot(P_min_FUE, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-plot(P_max_FUE, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 xlim([1 10]);
 ylim([0 15]);
-legend({'IL+X_1'},'Interpreter','latex','FontSize',12);
+xlabel('FBS Numbers','FontSize',12);
+ylabel('Transmit power (dBm)','FontSize',12);
+legend({'$\max{\mathbf{P}}$', '$mean{\mathbf{P}}$', '$\min{\mathbf{P}}$'},'Interpreter','latex','FontSize',12);
 %%
 figure;
 hold on;
 grid on;
 box on;
 % plot(ones(1,40)*1.0, '--k', 'LineWidth',1);
+plot(P_max_FUE_1, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(P_mean_FUE_1, '--ok', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 plot(P_min_FUE_1, '--ob', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-plot(P_max_FUE_1, '--or', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 xlim([1 10]);
 ylim([0 15]);
-legend({'IL+X_2'},'Interpreter','latex','FontSize',12);
+xlabel('FBS Numbers','FontSize',12);
+ylabel('Transmit power (dBm)','FontSize',12);
+legend({'$\max{\mathbf{P}}$', '$mean{\mathbf{P}}$', '$\min{\mathbf{P}}$'},'Interpreter','latex','FontSize',12);
 %%
 figure;
 hold on;
 grid on;
 box on;
 % plot(ones(1,40)*1.0, '--k', 'LineWidth',1);
+plot(P_max_FUE_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(P_mean_FUE_2, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 plot(P_min_FUE_2, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-plot(P_max_FUE_2, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 xlim([1 10]);
 ylim([0 15]);
-legend({'CL+X_1'},'Interpreter','latex','FontSize',12);
+xlabel('FBS Numbers','FontSize',12);
+ylabel('Transmit power (dBm)','FontSize',12);
+legend({'$\max{\mathbf{P}}$', '$mean{\mathbf{P}}$', '$\min{\mathbf{P}}$'},'Interpreter','latex','FontSize',12);
 %%
 figure;
 hold on;
 grid on;
 box on;
 % plot(ones(1,40)*1.0, '--k', 'LineWidth',1);
+plot(P_max_FUE_3, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 plot(P_mean_FUE_3, '--dk', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k', 'MarkerEdgeColor','b');
 plot(P_min_FUE_3, '--db', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','b', 'MarkerEdgeColor','b');
-plot(P_max_FUE_3, '--dr', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','r', 'MarkerEdgeColor','b');
 xlim([1 10]);
 ylim([0 15]);
-legend({'CL+X_2'},'Interpreter','latex','FontSize',12);
+xlabel('FBS Numbers','FontSize',12);
+ylabel('Transmit power (dBm)','FontSize',12);
+legend({'$\max{\mathbf{P}}$', '$mean{\mathbf{P}}$', '$\min{\mathbf{P}}$'},'Interpreter','latex','FontSize',12);
 %%
 figure;
 hold on;
@@ -192,7 +200,7 @@ legend({'$\mathcal{X}_4$'},'FontSize',10, 'Interpreter','latex');
 
 supertitle('','FontSize',14, 'FontWeight','bold');
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
@@ -211,6 +219,7 @@ ylim([4 350]);
 % legend({'IL','CL', '$\rho$'},'Interpreter','latex','FontSize',12);
 % legend({'\alpha_1','\alpha_2', '\alpha_3'},'FontSize',14, 'FontWeight','bold');
 % legend({'X_1','X_2', 'X_3', 'greedy'},'FontSize',12);%, 'FontWeight','bold');
+legend({'IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 %%
 %%
 function [P_min_FUE, P_sum_FUE, P_mean_FUE, P_max_FUE ] = powerProfile(T)

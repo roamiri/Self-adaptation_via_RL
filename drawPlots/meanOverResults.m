@@ -93,6 +93,11 @@ T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
 T1 = 'oct8/T2/pro_x1_IL_%d_%d.mat'; % --()^2
 T2 = 'oct11/T1/pro_x1_IL_%d_%d.mat'; % exp[-()^2]
 T3 = 'oct18/T1/pro_x1_IL_%d_%d.mat'; % ++()^2
+T4 = 'oct19/T3/pro_x1_IL_%d_%d.mat'; %()^3
+T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
+%% ()^3 vs ()^3-()^2
+T1 = 'oct19/T2/pro_x1_IL_%d_%d.mat'; 
+T2 = 'oct19/T2/pro_x1_CL_%d_%d.mat'; 
 T4 = 'oct8/T3/pro_x1_IL_%d_%d.mat'; %()^3
 T5 = 'oct4/T1/pro_greedy_%d_%d.mat'; %greedy
 %%
@@ -105,7 +110,7 @@ T5 = 'oct19/T1/pro_greedy_%d_%d.mat'; %% power allocation with Pmax=25dBm
 [MUE_C_4 ,min_FUE_4 ,sum_FUE_4 ,mean_FUE_4 ,max_FUE_4 ,failed_FUE_4 ,diff_FUE_4, C_FUE_Mat_4] = performance(T5);
 % [MUE_C_5 ,min_FUE_5 ,sum_FUE_5 ,mean_FUE_5 ,max_FUE_5 ,failed_FUE_5 ,diff_FUE_5, C_FUE_Mat_5] = performance(T6);
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
@@ -120,14 +125,14 @@ plot(MUE_C_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');%, 
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('MUE transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
-% ylim([3 10]);
-% legend({'QoS','IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
+ylim([3 10]);
+legend({'QoS','IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'qos', 'IL','CL'},'Interpreter','latex','FontSize',12);
 % legend({'QoS','CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'qos','$\mathcal{X}_1$','$\mathcal{X}_2$', '$\mathcal{X}_3$', '$\mathcal{X}_4$'},'Interpreter','latex','FontSize',12);
 % legend({'QoS','IL+$\mathcal{X}_1,\rho=1$','IL+$\mathcal{X}_2,\rho=1$', 'IL+$\mathcal{X}_1$', 'IL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
@@ -226,7 +231,7 @@ supertitle('','FontSize',14, 'FontWeight','bold');
 % xlabel('FBS Numbers','FontSize',14, 'FontWeight','bold');
 % ylabel('Capacity(b/s/HZ)','FontSize',14, 'FontWeight','bold');
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
@@ -241,14 +246,15 @@ plot(sum_FUE_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','k');
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Sum transmission rate (b/s/Hz)','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
- ylim([0 20]);
+ylim([0 20]);
+legend({'IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'IL','CL', '$\rho$'},'Interpreter','latex','FontSize',12);
 % legend({'\alpha_1','\alpha_2', '\alpha_3'},'FontSize',14, 'FontWeight','bold');
 % legend({'X_1','X_2', 'X_3', 'X_4'},'FontSize',12);%, 'FontWeight','bold');
 % legend({'CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');
 %%
-% figure;
+figure;
 hold on;
 grid on;
 box on;
@@ -262,7 +268,8 @@ plot(1-failed_FUE_4, '--*k', 'LineWidth',1.3,'MarkerSize',8, 'MarkerFaceColor','
 xlabel('FBS Numbers','FontSize',12);%, 'FontWeight','bold');
 ylabel('Probability of FUEs with $\gamma_k \geq \Gamma_k$ ','Interpreter','latex','FontSize',12);%, 'FontWeight','bold');
 xlim([1 10]);
-% ylim([0 1]);
+ylim([0 1]);
+legend({'IL+$\mathcal{X}_1$','IL+$\mathcal{X}_2$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'CL+$\mathcal{X}_1,\rho=1$','CL+$\mathcal{X}_2,\rho=1$', 'CL+$\mathcal{X}_1$', 'CL+$\mathcal{X}_2$', 'greedy'},'Interpreter','latex','FontSize',12);
 % legend({'greedy','X_2', 'X_3', 'X_4'},'FontSize',12);%, 'FontWeight','bold');
 % legend({'IL+$\mathbf{X}_2$','CL+$\mathbf{X}_3$'},'FontSize',14, 'FontWeight','bold','Interpreter','latex');

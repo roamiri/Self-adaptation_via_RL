@@ -70,7 +70,6 @@ FBS{fbsNum}.P = Pmax;
 SINR_FUE_Vec = SINR_FUE_2(G, L, FBS, MBS, -174);
 FBS{fbsNum}.SINR_max = log2(1+SINR_FUE_Vec(fbsNum));
 
-
 x = linspace(mue.SINR_min, mue.SINR_max, 100);
 y = linspace(FBS{fbsNum}.SINR_min, FBS{fbsNum}.SINR_max, 100);
 
@@ -81,12 +80,15 @@ r0 = linspace(0,10,100);
 ri = linspace(0,10,100);
 
 [xx,yy] = meshgrid(r0,ri);
-beta = 1;%FBS{fbsNum}.dMUE/18;
+beta = FBS{fbsNum}.dMUE/18;
 
 % zz = beta.*yy.*xx.^2 -(yy-q_fue).^2 - (1/beta)*(xx-q_mue).^2;
-zz = +(yy-q_fue).^3 - (1./beta).*(xx-q_mue).^2;
-% zz = (yy-q_fue).^3 + (beta).^sign(xx-q_mue).*(xx-q_mue).^3;
+% zz = -(yy-q_fue).^2 - (xx-q_mue).^2;
+% zz = exp(-(xx-q_mue).^2)-exp(-yy);
+% zz = (yy-q_fue).^3 + (xx-q_mue).^3;
+zz = (beta).^sign(xx-q_mue).*(yy-q_fue).^3 + (beta).^sign(xx-q_mue).*(xx-q_mue).^3;
 % zz = yy - (1./beta).*(xx-q_mue).^2;
+% zz = beta.*yy - (1/beta)*(xx-q_mue).^2;
 zz = zz / max(max(abs(zz)));
 
 figure;

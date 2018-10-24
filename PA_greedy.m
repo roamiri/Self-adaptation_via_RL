@@ -13,7 +13,7 @@ clc;
 % format compact
 %% Parameters
 Pmin = 5;                                                                                                                                                                                                                                                                                                                                                                           %dBm
-Pmax = 45; %dBm
+Pmax = 15; %dBm
 %StepSize = (Pmax-Pmin)/Npower; % dB
 
 %% Minimum Rate Requirements for N MUE users

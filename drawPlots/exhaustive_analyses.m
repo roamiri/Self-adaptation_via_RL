@@ -4,7 +4,7 @@ clc;
 %%
 % T1 = 'oct4/ex/pro_ex_%d_%d.mat'; % for maximum sumrate and r0>q_mue
 T1 = 'oct13/ex/pro_ex_%d_%d.mat'; % for maximum sumrate and r0>q_mue and r_k>q_fue for all k
-[MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_sum_FUE] = performance(T1);
+[MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_sum_FUE,C_FUE_Mat] = performance(T1);
 % T2 = 'oct4/p9/pro_ex_9_%d_%d.mat';
 % [MUE_C(9) ,min_FUE ,sum_FUE(9) ,mean_FUE ,max_FUE ,failed_FUE(9) ,diff_FUE(9), P_sum_FUE(9)] = performance_iter(T2,9);
 % T3 = 'oct4/p10/pro_ex_10_1_%d.mat';
@@ -148,7 +148,7 @@ function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_su
     P_sum_FUE = [P_sum_FUE sum(P_FUE_Mat_W)];
 end
 %%
-function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_sum_FUE] = performance(T)
+function [MUE_C ,min_FUE ,sum_FUE ,mean_FUE ,max_FUE ,failed_FUE ,diff_FUE, P_sum_FUE, C_FUE_Mat] = performance(T)
     MUE_C = [];    
     min_FUE = [];
     sum_FUE = [];

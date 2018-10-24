@@ -17,7 +17,7 @@ Pmax = 15; %dBm
 
 %% Minimum Rate Requirements for N MUE users
 N = 3;
-q_mue = 4.0; q_fue=0.00;
+q_mue = 4.0; q_fue=0.50;
 %% Q-Learning variables
 % Actions
 actions = linspace(Pmin, Pmax, Npower);
@@ -33,7 +33,7 @@ Q1 = ones(size(states,1) , Npower) * inf;
 sumQ = ones(size(states,1) , Npower) * 0.0;
 % meanQ = ones(size(states,1) , Npower) * 0.0;
 
-alpha = 0.5; gamma = 0.9; epsilon = 0.3 ; Iterations = 75000;
+alpha = 0.5; gamma = 0.9; epsilon = 0.1 ; Iterations = 10*75000;
 %% Generate the UEs
 %  mue = UE(204, 207);
 % mue(1) = UE(150, 150);
@@ -159,7 +159,7 @@ FBS{j} = fbs;
 %              R = beta*fbs.C_FUE*(mue.C).^2 -(fbs.C_FUE-q_fue).^2 - (1/beta)*(mue.C-q_mue)^2;
 %              R = (fbs.C_FUE-q_fue).^3 + (mue.C-q_mue)^3;
 %              R = (fbs.C_FUE-q_fue).^3 + (beta.^sign(mue.C-q_mue))*(mue.C-q_mue)^3;
-             R = (fbs.C_FUE-q_fue).^3 - (1/beta)*(mue.C-q_mue)^2;
+             R = -exp(-fbs.C_FUE) + exp(-(mue.C-q_mue)^2);
 %             R = fbs.C_FUE -(fbs.C_FUE-q_fue).^2;
 %             if j == size(FBS,2)
 %                 d_reward = fbs.dr(episode) + (gamma^episode) * R;
@@ -208,6 +208,6 @@ FBS{j} = fbs;
     answer.episode = episode;
     answer.time = toc(tt);
     QFinal = answer;
-    save(sprintf('oct19/T2/pro_x1_IL_%d_%d.mat', fbsCount, saveNum),'QFinal');
+    save(sprintf('oct24/T1/pro_x1_IL_%d_%d.mat', fbsCount, saveNum),'QFinal');
     FBS_out = FBS;
 end
